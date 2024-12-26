@@ -5,3 +5,6 @@ el carpeta instale las librerias mediante el comando:
 pip install -r requirements 
 
 
+Igualmente se entrega dos scripts en python:
+- (subscribe.py), uno para subscribirse a un contenido que publica el SINITT.
+- (unsubscribe.py), uno para des-subscribirse de un contenido que publica el SINITT.
