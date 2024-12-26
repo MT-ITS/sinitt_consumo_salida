@@ -1,0 +1,10 @@
+runtime: python38
+service: ingest-server-session
+
+handlers:
+- url: /*
+  script: main.app
+
+instance_class: B8
+manual_scaling:
+  instances: 1

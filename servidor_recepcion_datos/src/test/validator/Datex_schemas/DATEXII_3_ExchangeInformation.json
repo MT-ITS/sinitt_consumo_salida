@@ -1,0 +1,426 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "_ExchangeReturnEnum": {
+      "title": "_ExchangeReturnEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ExchangeReturnEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_ExchangeStatusEnum": {
+      "title": "_ExchangeStatusEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ExchangeStatusEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_InvalidityReasonEnum": {
+      "title": "_InvalidityReasonEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/InvalidityReasonEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_OperatingModeEnum": {
+      "title": "_OperatingModeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/OperatingModeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_ProtocolTypeEnum": {
+      "title": "_ProtocolTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ProtocolTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_UpdateMethodEnum": {
+      "title": "_UpdateMethodEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/UpdateMethodEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Agent": {
+      "title": "Agent",
+      "description": "an actor in the exchange context",
+      "type": "object",
+      "properties": {
+        "address": {
+          "title": "address",
+          "description": "the network address of the exchange agent ",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "name": {
+          "title": "name",
+          "description": "name of the agent in the exchange context",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "referenceID": {
+          "title": "referenceID",
+          "description": "a reference for the agent in the exchange context",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "serviceURL": {
+          "title": "serviceURL",
+          "description": "the URL to address the agent service",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "internationalIdentifier": {
+          "title": "internationalIdentifier",
+          "$ref": "DATEXII_3_Common.json#/definitions/InternationalIdentifier"
+        },
+        "_agentExtension": {
+          "title": "_agentExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "DynamicInformation": {
+      "title": "DynamicInformation",
+      "description": "Dynamic Exchange Information",
+      "type": "object",
+      "properties": {
+        "exchangeStatus": {
+          "title": "exchangeStatus",
+          "description": "Status of Exchange defined by protocol Specification",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/_ExchangeStatusEnum"
+        },
+        "exchangeStatusDescription": {
+          "title": "exchangeStatusDescription",
+          "description": "multilingual textual Status description of Exchange defined by protocol Specification",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "completedPaylod": {
+          "title": "completedPaylod",
+          "description": "attribute which can be used to indicate when a payload had been completed or not within the current message, when set to false the following messages will deliver and complete all the payload content relative ot the current exchange or current session",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "messageSequencingNumber": {
+          "title": "messageSequencingNumber",
+          "description": "a number, always increasing within a same session among a client and supplier, which can be used to order message within a delivery",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "messageGenerationTimestamp": {
+          "title": "messageGenerationTimestamp",
+          "description": "the date time in which the message had been generated",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "returnInformation": {
+          "title": "returnInformation",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/ReturnInformation"
+        },
+        "sessionInformation": {
+          "title": "sessionInformation",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/SessionInformation"
+        },
+        "_dynamicInformationExtension": {
+          "title": "_dynamicInformationExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "messageGenerationTimestamp",
+        "exchangeStatus"
+      ]
+    },
+    "ExchangeContext": {
+      "title": "ExchangeContext",
+      "description": "Exchange Context e.g. which defines the specific Exchange Pattern and Functional Exchange Profile and other details about Supplier & client",
+      "type": "object",
+      "properties": {
+        "codedExchangeProtocol": {
+          "title": "codedExchangeProtocol",
+          "description": "the exchange protocol type as referenced by any standard or by agreement among client and supplier, e.g. Snapshot Pull, Simple Push, Collaborative ITS Services, etc",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/_ProtocolTypeEnum"
+        },
+        "exchangeSpecificationVersion": {
+          "title": "exchangeSpecificationVersion",
+          "description": "the version of the protocol used for the exchange as by standard or as agreed among client and supplier",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "operatingMode": {
+          "title": "operatingMode",
+          "description": "feature which specifies when the information should be delivered",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/_OperatingModeEnum"
+        },
+        "updateMethod": {
+          "title": "updateMethod",
+          "description": "exchange feature used in the protocol which specifies the rules to generate the information payload exchanged",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/_UpdateMethodEnum"
+        },
+        "nonCodedExchangeProtocol": {
+          "title": "nonCodedExchangeProtocol",
+          "description": "when a protocol is used in the exchange which is not predefined coded protocol, this attribute defines protocol information among supplier and client",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "supplierOrCisRequester": {
+          "title": "supplierOrCisRequester",
+          "description": "it defines the supplier or CIS requester information of the exchange context",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Agent"
+        },
+        "clientOrCisProvider": {
+          "title": "clientOrCisProvider",
+          "description": "it defines the client or CIS provider information of the exchange context, depending on Exchange Pattern it may be instantiated for single or multiple client or no one",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Agent"
+          },
+          "minItems": 0
+        },
+        "subscription": {
+          "title": "subscription",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Subscription"
+        },
+        "_exchangeContextExtension": {
+          "title": "_exchangeContextExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "codedExchangeProtocol",
+        "exchangeSpecificationVersion",
+        "supplierOrCisRequester"
+      ]
+    },
+    "ExchangeReturnEnum": {
+      "title": "ExchangeReturnEnum",
+      "description": "Enumeration that identifies the return status",
+      "type": "string",
+      "enum": [
+        "ack",
+        "closeSessionRequest",
+        "fail",
+        "snapshotSynchronisationRequest",
+        "_extended"
+      ]
+    },
+    "ExchangeStatusEnum": {
+      "title": "ExchangeStatusEnum",
+      "description": "Enumeration that identifies the status of exchange session",
+      "type": "string",
+      "enum": [
+        "closingSession",
+        "offline",
+        "online",
+        "openingSession",
+        "resuming",
+        "undefined",
+        "_extended"
+      ]
+    },
+    "InvalidityReasonEnum": {
+      "title": "InvalidityReasonEnum",
+      "description": "a list of possible invalidity reason for messages",
+      "type": "string",
+      "enum": [
+        "invalidCISInformation",
+        "invalidClient",
+        "invalidExchangeContext",
+        "invalidInformationManagement",
+        "invalidMessage",
+        "invalidPayload",
+        "invalidSequencingNumber",
+        "invalidSession",
+        "invalidSupplier",
+        "other",
+        "_extended"
+      ]
+    },
+    "OperatingModeEnum": {
+      "title": "OperatingModeEnum",
+      "description": "the enumeration of the possible operating mode which can be adopted in the exchange",
+      "type": "string",
+      "enum": [
+        "conditionTriggered",
+        "onOccurrence",
+        "other",
+        "periodic",
+        "_extended"
+      ]
+    },
+    "ProtocolTypeEnum": {
+      "title": "ProtocolTypeEnum",
+      "description": "a list of protocol type as possible exchange specification available",
+      "type": "string",
+      "enum": [
+        "deltaPull",
+        "deltaPush",
+        "other",
+        "simpleCIS",
+        "simplePush",
+        "snapshotPull",
+        "snapshotPush",
+        "statefulCIS",
+        "statefulPush",
+        "_extended"
+      ]
+    },
+    "ReturnInformation": {
+      "title": "ReturnInformation",
+      "description": "the information provided as rerturn after a message had been delivered",
+      "type": "object",
+      "properties": {
+        "returnStatus": {
+          "title": "returnStatus",
+          "description": "the return status of a message previously delivered",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/_ExchangeReturnEnum"
+        },
+        "returnStatusReason": {
+          "title": "returnStatusReason",
+          "description": "the reason for the setting of the return status",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "codedInvalidityReason": {
+          "title": "codedInvalidityReason",
+          "description": "it specifies the invalid information which had been found in a message by the receiver",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/_InvalidityReasonEnum"
+          },
+          "minItems": 0
+        },
+        "_returnInformationExtension": {
+          "title": "_returnInformationExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "returnStatus"
+      ]
+    },
+    "SessionInformation": {
+      "title": "SessionInformation",
+      "description": "Session Information",
+      "type": "object",
+      "properties": {
+        "sessionID": {
+          "title": "sessionID",
+          "description": "the ID of Sessione established among Client and Supplier",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "startSession": {
+          "title": "startSession",
+          "description": "the start date and time of the session",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "_sessionInformationExtension": {
+          "title": "_sessionInformationExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "sessionID"
+      ]
+    },
+    "Subscription": {
+      "title": "Subscription",
+      "description": "a subscription among a supplier and its client  or among service providers and service requester in the collaborative ITS services franework",
+      "type": "object",
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "the descriptive name of the subscription",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "referenceID": {
+          "title": "referenceID",
+          "description": "a reference idenfitication for the subscription for the exchange",
+          "$ref": "DATEXII_3_Common.json#/definitions/Reference"
+        },
+        "subscriptionStart": {
+          "title": "subscriptionStart",
+          "description": "it defines the date and time when the subscription is to be consiidered active",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "subscriptionEnd": {
+          "title": "subscriptionEnd",
+          "description": "it defines the date and time when the subscription is to be considered ended",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "deliveyFrequency": {
+          "title": "deliveyFrequency",
+          "description": "the planned time payload delivery frequence as number in seconds, it includes \"keep alive\" messages delivey when not payload is to be delivered",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/definitions/Validity"
+        },
+        "_subscriptionExtension": {
+          "title": "_subscriptionExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "UpdateMethodEnum": {
+      "title": "UpdateMethodEnum",
+      "description": "the list of the possible operating method which are managed for exchange",
+      "type": "string",
+      "enum": [
+        "allElementUpdate",
+        "allInformationUpdate",
+        "other",
+        "singleElementUpdate",
+        "snapshot",
+        "_extended"
+      ]
+    }
+  }
+}

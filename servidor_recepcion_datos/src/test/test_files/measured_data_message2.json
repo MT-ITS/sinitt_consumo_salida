@@ -1,0 +1,1 @@
+{"MeasuredDataPublication": {"siteMeasurements": [{"measurementSiteReference": {"targetClass": "test1", "_id": "test1", "_version": "test1"}, "physicalQuantity": [{"index": "test1", "physicalQuantity": {"SinglePhysicalQuantity": {"basicData": {"TrafficSpeed": {"averageVehicleSpeed": {"speed": "test1"}}}}}}]}], "publicationTime": "test1"}}

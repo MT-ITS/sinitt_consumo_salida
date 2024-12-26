@@ -1,0 +1,296 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "_PredefinedServiceEnum": {
+      "title": "_PredefinedServiceEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/PredefinedServiceEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_ServiceActionEnum": {
+      "title": "_ServiceActionEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/ServiceActionEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_ServiceActionStatusEnum": {
+      "title": "_ServiceActionStatusEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/ServiceActionStatusEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CISInformation": {
+      "title": "CISInformation",
+      "description": "CIS information",
+      "type": "object",
+      "properties": {
+        "serviceFeedback": {
+          "title": "serviceFeedback",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CISInformation.json#/definitions/ServiceFeedback"
+          },
+          "minItems": 0
+        },
+        "serviceRequest": {
+          "title": "serviceRequest",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_CISInformation.json#/definitions/ServiceRequest"
+          },
+          "minItems": 0
+        },
+        "_cisInformationExtension": {
+          "title": "_cisInformationExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "PredefinedServiceEnum": {
+      "title": "PredefinedServiceEnum",
+      "description": "list of predefined service requests",
+      "type": "string",
+      "enum": [
+        "broadcastDelivery",
+        "other",
+        "tmpActivation",
+        "vmsMessageProcessing",
+        "_extended"
+      ]
+    },
+    "ServiceActionEnum": {
+      "title": "ServiceActionEnum",
+      "description": "The current or requested status of TMP activation during request, implementation and termination phases",
+      "type": "string",
+      "enum": [
+        "agreement",
+        "cancellation",
+        "implementation",
+        "processing",
+        "statusInformation",
+        "termination",
+        "_extended"
+      ]
+    },
+    "ServiceActionStatusEnum": {
+      "title": "ServiceActionStatusEnum",
+      "description": "Defines values of service status",
+      "type": "string",
+      "enum": [
+        "compliant",
+        "failed",
+        "notCompliant",
+        "processing",
+        "rejected",
+        "scheduled",
+        "success",
+        "timedOut",
+        "_extended"
+      ]
+    },
+    "ServiceFeedback": {
+      "title": "ServiceFeedback",
+      "description": "Feedback about a specific Service Request from the Service Implementer to the Requester",
+      "type": "object",
+      "properties": {
+        "serviceRequestFeedbackReason": {
+          "title": "serviceRequestFeedbackReason",
+          "description": "additional text to feedback about the Status of the Service Request",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "serviceRequestStatus": {
+          "title": "serviceRequestStatus",
+          "description": "specifies the Status of Service request referenced",
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/_ServiceActionStatusEnum"
+        },
+        "serviceRequestReference": {
+          "title": "serviceRequestReference",
+          "description": "Reference to the service request to which refers the Service Feedback ",
+          "$ref": "DATEXII_3_Common.json#/definitions/VersionedReference"
+        },
+        "serviceProvider": {
+          "title": "serviceProvider",
+          "description": "it identifies the service provider agent of the service feedback",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Agent"
+        },
+        "_serviceFeedbackExtension": {
+          "title": "_serviceFeedbackExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "serviceRequestStatus",
+        "serviceRequestReference",
+        "serviceProvider"
+      ]
+    },
+    "ServiceRequest": {
+      "title": "ServiceRequest",
+      "description": "Service Request from the Service Implementer to the Requester",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "_version": {
+          "type": "string"
+        },
+        "elementToProcessReference": {
+          "title": "elementToProcessReference",
+          "description": "Element reference to be process",
+          "$ref": "DATEXII_3_Common.json#/definitions/Reference"
+        },
+        "elementToProcessVersionedReference": {
+          "title": "elementToProcessVersionedReference",
+          "description": "Element versioned reference to be process",
+          "$ref": "DATEXII_3_Common.json#/definitions/VersionedReference"
+        },
+        "expiryTime": {
+          "title": "expiryTime",
+          "description": "date time until which to implement the required action for Service",
+          "$ref": "DATEXII_3_Common.json#/definitions/VersionedReference"
+        },
+        "externalReference": {
+          "title": "externalReference",
+          "description": "Extranle reference to be process",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "notPredefinedServiceName": {
+          "title": "notPredefinedServiceName",
+          "description": "Name of service not predefined",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "predefinedService": {
+          "title": "predefinedService",
+          "description": "Type of predefined service",
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/_PredefinedServiceEnum"
+        },
+        "requestedAction": {
+          "title": "requestedAction",
+          "description": "identifies the action requested for the specified Service",
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/_ServiceActionEnum"
+        },
+        "servicerRequestCreationTime": {
+          "title": "servicerRequestCreationTime",
+          "description": "Time of creation request",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "servicerRequestVersionTime": {
+          "title": "servicerRequestVersionTime",
+          "description": "Time of version request time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "customServiceParameter": {
+          "title": "customServiceParameter",
+          "description": "a string conveying information for custom parameter to Service",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "serviceRequester": {
+          "title": "serviceRequester",
+          "description": "It identifies the service requester agent of the service request",
+          "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Agent"
+        },
+        "serviceProvider": {
+          "title": "serviceProvider",
+          "description": "It identifies the list of  the service provider agents of the service request",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ExchangeInformation.json#/definitions/Agent"
+          },
+          "minItems": 1
+        },
+        "serviceRequestCondition": {
+          "title": "serviceRequestCondition",
+          "$ref": "DATEXII_3_CISInformation.json#/definitions/ServiceRequestCondition"
+        },
+        "_serviceRequestExtension": {
+          "title": "_serviceRequestExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "_id",
+        "_version",
+        "requestedAction",
+        "servicerRequestCreationTime",
+        "servicerRequestVersionTime",
+        "predefinedService",
+        "serviceRequester",
+        "serviceProvider"
+      ]
+    },
+    "ServiceRequestCondition": {
+      "title": "ServiceRequestCondition",
+      "description": "specifies the condition which is behind the need for the service request, e.g. a specific situation or situation record, travel times status, specific road data or external conditions",
+      "type": "object",
+      "properties": {
+        "conditionDescription": {
+          "title": "conditionDescription",
+          "description": "A multilingual description of the condition under which the Service Request is instantiated",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "externalIdCondition": {
+          "title": "externalIdCondition",
+          "description": "en external reference ID to the condition for the Service Request",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "referencedCondition": {
+          "title": "referencedCondition",
+          "description": "the list of condition information which are referenced by a Identifiebla in payload publications",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Reference"
+          },
+          "minItems": 0
+        },
+        "versionReferencedCondition": {
+          "title": "versionReferencedCondition",
+          "description": "the list of condition information which are version referenced by a Identifiebla in payload publications",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/VersionedReference"
+          },
+          "minItems": 0
+        },
+        "_serviceRequestConditionExtension": {
+          "title": "_serviceRequestConditionExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    }
+  }
+}

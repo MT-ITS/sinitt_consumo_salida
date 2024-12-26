@@ -1,0 +1,217 @@
+{
+  "_modelBaseVersion": "3",
+  "situationSituationPublication": {
+    "lang": "es",
+    "publicationTime": "2022-02-02T15:00:00+02:00",
+    "feedType": "SITUATIONS",
+    "publicationCreator": {
+      "country": "co",
+      "nationalIdentifier": "Invi"
+    },
+    "situation": [
+      {
+        "_id": "0",
+        "headerInformation": {
+          "informationStatus": {
+            "value": "real"
+          }
+        },
+        "situationRecord": [
+          {
+            "situationGeneralObstruction": {
+              "_id": "0",
+              "_version": "1",
+              "situationRecordCreationTime": "2022-02-02T06:31:35+05:00",
+              "situationRecordVersionTime": "2022-02-02T06:31:35+05:00",
+              "probabilityOfOccurrence": {
+                "value": "certain"
+              },
+              "validity": {
+                "validityStatus": {
+                  "value": "active"
+                },
+                "validityTimeSpecification": {
+                  "overallStartTime": "2022-02-02T14:31:35+05:00"
+                }
+              },
+              "locationReference": {
+                "locationReferencingPointLocation": {
+                  "pointByCoordinates": {
+                    "pointCoordinates": {
+                      "latitude": 4.706799030303955,
+                      "longitude": -74.05436706542969
+                    }
+                  },
+                  "alertCPoint": [
+                    {
+                      "locationReferencingAlertCMethod4Point": {
+                        "alertCLocationCountryCode": "co",
+                        "alertCLocationTableNumber": "table_id",
+                        "alertCLocationTableVersion": "1",
+                        "alertCDirection": {
+                          "alertCDirectionCoded": {
+                            "value": "positive"
+                          },
+                          "alertCAffectedDirection": {
+                            "value": "both"
+                          }
+                        },
+                        "alertCMethod4PrimaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 265
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": 2
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              },
+              "obstructionType": [
+                {
+                  "value": "incident"
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "_id": "19999",
+        "headerInformation": {
+          "informationStatus": {
+            "value": "real"
+          }
+        },
+        "situationRecord": [
+          {
+            "situationInfrastructureDamageObstruction": {
+              "_id": "19999",
+              "_version": "1",
+              "situationRecordCreationTime": "2022-02-16T21:12:22",
+              "situationRecordVersionTime": "2022-02-16T21:12:22",
+              "probabilityOfOccurrence": {
+                "value": "certain"
+              },
+              "infrastructureDamageType": {
+                "value": "damagedBridge"
+              },
+              "validity": {
+                "validityStatus": {
+                  "value": "active"
+                },
+                "validityTimeSpecification": {
+                  "overallStartTime": "2022-01-14T03:12:22"
+                }
+              },
+              "locationReference": {
+                "locationReferencingPointLocation": {
+                  "pointByCoordinates": {
+                    "pointCoordinates": {
+                      "latitude": 4.71534299850464,
+                      "longitude": -74.0288314819336
+                    }
+                  },
+                  "alertCPoint": [
+                    {
+                      "locationReferencingAlertCMethod4Point": {
+                        "alertCLocationCountryCode": "co",
+                        "alertCLocationTableNumber": "table_id",
+                        "alertCLocationTableVersion": "1",
+                        "alertCDirection": {
+                          "alertCDirectionCoded": {
+                            "value": "negative"
+                          },
+                          "alertCAffectedDirection": {
+                            "value": "both"
+                          }
+                        },
+                        "alertCMethod4PrimaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 1212
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": 1
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      },
+      {
+        "_id": "19998",
+        "headerInformation": {
+          "informationStatus": {
+            "value": "real"
+          }
+        },
+        "situationRecord": [
+          {
+            "situationVehicleObstruction": {
+              "_id": "19998",
+              "_version": "1",
+              "situationRecordCreationTime": "2022-01-21T12:12:22",
+              "situationRecordVersionTime": "2022-01-23T13:12:22",
+              "probabilityOfOccurrence": {
+                "value": "certain"
+              },
+              "vehicleObstructionType": {
+                "value": "medicalEmergency"
+              },
+              "validity": {
+                "validityStatus": {
+                  "value": "active"
+                },
+                "validityTimeSpecification": {
+                  "overallStartTime": "2022-01-25T03:12:22"
+                }
+              },
+              "locationReference": {
+                "locationReferencingPointLocation": {
+                  "pointByCoordinates": {
+                    "pointCoordinates": {
+                      "latitude": 4.6143045425415,
+                      "longitude": -74.1275863647461
+                    }
+                  },
+                  "alertCPoint": [
+                    {
+                      "locationReferencingAlertCMethod4Point": {
+                        "alertCLocationCountryCode": "co",
+                        "alertCLocationTableNumber": "table_id",
+                        "alertCLocationTableVersion": "1",
+                        "alertCDirection": {
+                          "alertCDirectionCoded": {
+                            "value": "positive"
+                          },
+                          "alertCAffectedDirection": {
+                            "value": "both"
+                          }
+                        },
+                        "alertCMethod4PrimaryPointLocation": {
+                          "alertCLocation": {
+                            "specificLocation": 1427
+                          },
+                          "offsetDistance": {
+                            "offsetDistance": 9
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

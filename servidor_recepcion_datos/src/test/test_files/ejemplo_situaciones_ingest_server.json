@@ -1,0 +1,74 @@
+{
+    "filterAttributes": {
+        "agency": "SecrBOG",
+        "datexMessageType": "situationPublication"
+    },
+    "datexPublicationData": {
+        "_modelBaseVersion": "3",
+        "situationSituationPublication": {
+            "feedType": "SITUATIONS",
+            "lang": "en",
+            "publicationCreator": {
+                "country": "co",
+                "nationalIdentifier": "SecrBOG"
+            },
+            "publicationTime": "2022-05-25T16:43:37-0500",
+            "situation": [
+                {
+                    "_id": "68222",
+                    "headerInformation": {
+                        "informationStatus": {
+                            "value": "real"
+                        }
+                    },
+                    "situationRecord": [
+                        {
+                            "situationAccident": {
+                                "_id": "68222",
+                                "_version": "1",
+                                "accidentType": [
+                                    {
+                                        "value": "accident"
+                                    }
+                                ],
+                                "generalPublicComment": {
+                                    "comment": "  Fecha: 2022-05-25 y hora: 16:29:08> Incidente: 2022-05-25 16:27 16:27 CARRERA 100A CON CALLE 42F SUR S - N: Se presenta siniestro solo da\u00f1os entre  autom\u00f3vil  y  motocicleta.  Se asigna unidad de tr\u00e1nsito. Fuente: NUSE. *Localidad  de Bosa*"
+                                },
+                                "locationReference": {
+                                    "locationReferencingPointLocation": {
+                                        "pointByCoordinates": {
+                                            "pointCoordinates": {
+                                                "latitude": 4.648568630218506,
+                                                "longitude": -74.17957305908203
+                                            }
+                                        }
+                                    }
+                                },
+                                "probabilityOfOccurrence": {
+                                    "value": "certain"
+                                },
+                                "severity": {
+                                    "value": "low"
+                                },
+                                "situationRecordCreationTime": "2022-05-25T16:27:00-0500",
+                                "situationRecordVersionTime": "2022-05-25T16:29:14-0500",
+                                "source": {
+                                    "sourceName": "NUSE"
+                                },
+                                "totalNumberOfVehiclesInvolved": "2",
+                                "validity": {
+                                    "validityStatus": {
+                                        "value": "active"
+                                    },
+                                    "validityTimeSpecification": {
+                                        "overallStartTime": "2022-05-25T16:29:14-0500"
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

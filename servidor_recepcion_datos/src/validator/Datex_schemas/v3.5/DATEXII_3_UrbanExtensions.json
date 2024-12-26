@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "ClassifiedDelay": {
+      "title": "ClassifiedDelay",
+      "description": "A delay valid for vehicles with specific characteristics.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "delays": {
+          "title": "delays",
+          "$ref": "DATEXII_3_Situation.json#/definitions/Delays"
+        },
+        "vehicleCharacteristics": {
+          "title": "vehicleCharacteristics",
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+        },
+        "classifiedDelayExtensionG": {
+          "title": "classifiedDelayExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vehicleCharacteristics",
+        "delays"
+      ]
+    },
+    "ImpactExtendedUrban": {
+      "title": "ImpactExtendedUrban",
+      "description": "Extension for impact class.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "classifiedDelay": {
+          "title": "classifiedDelay",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_UrbanExtensions.json#/definitions/ClassifiedDelay"
+          },
+          "minItems": 0
+        }
+      }
+    }
+  }
+}

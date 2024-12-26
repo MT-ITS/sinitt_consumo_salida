@@ -1,0 +1,8 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "title": "exchangeInformation",
+  "definitions": {},
+  "$ref": "file:DATEXII_3_MessageContainer.json#/definitions/MessageContainer",
+  "type": "object",
+  "additionalProperties": false
+}

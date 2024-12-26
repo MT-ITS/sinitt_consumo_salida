@@ -1,0 +1,2498 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "AmountInCurrency": {
+      "title": "AmountInCurrency",
+      "description": "A class supporting the definition of a unit of currency in a defined currency.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "currencyValue": {
+          "title": "currencyValue",
+          "description": "The amount of currency specified in the given currency code type.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "currencyType": {
+          "title": "currencyType",
+          "description": "Code for the specified currency as defined in ISO 4217.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+        },
+        "amountInCurrencyExtensionG": {
+          "title": "amountInCurrencyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "currencyType",
+        "currencyValue"
+      ]
+    },
+    "AmountOfMoney": {
+      "title": "AmountOfMoney",
+      "description": "A monetary value expressed to two decimal places.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Decimal"
+    },
+    "BrandsAcceptedCodeList": {
+      "title": "BrandsAcceptedCodeList",
+      "description": "Use this class to describe details of the brands that are accepted.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "brandsAcceptedList": {
+          "title": "brandsAcceptedList",
+          "description": "List of accepted brands for payment cards.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentBrandsEnumG"
+        },
+        "brandsAcceptedCodeListExtensionG": {
+          "title": "brandsAcceptedCodeListExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "brandsAcceptedList"
+      ]
+    },
+    "BrandsAcceptedText": {
+      "title": "BrandsAcceptedText",
+      "description": "Use this class to describe details of the brands that are accepted.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "brandsAccepted": {
+          "title": "brandsAccepted",
+          "description": "List of accepted brands for payment cards.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "brandsAcceptedTextExtensionG": {
+          "title": "brandsAcceptedTextExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "brandsAccepted"
+      ]
+    },
+    "ClosureInformation": {
+      "title": "ClosureInformation",
+      "description": "Information about temporary or permanent closure.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "permananentlyClosed": {
+          "title": "permananentlyClosed",
+          "description": "Permanently closed, i.e. it is not intended to open again.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "temporarilyClosed": {
+          "title": "temporarilyClosed",
+          "description": "Temporarily closed for an unspecified period.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "closedFrom": {
+          "title": "closedFrom",
+          "description": "Permanently or temporarily closed from the given date on. May lie in the future - in this case the scene is not closed now.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "temporarilyClosedUntil": {
+          "title": "temporarilyClosedUntil",
+          "description": "Temporarily closed until the given date (i.e. closure still includes this date).",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "closureInformationExtensionG": {
+          "title": "closureInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactInformation": {
+      "title": "ContactInformation",
+      "description": "Contact information",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "title": "language",
+          "description": "Language(s) that are supported via telephone or mail.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Language"
+          },
+          "minItems": 0
+        },
+        "telephoneNumber": {
+          "title": "telephoneNumber",
+          "description": "Telephone number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "faxNumber": {
+          "title": "faxNumber",
+          "description": "Fax number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "eMail": {
+          "title": "eMail",
+          "description": "E-Mail address, which can be a general mail address or the mail address of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "contactInformationExtensionG": {
+          "title": "contactInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "ContactInformationG": {
+      "title": "ContactInformationG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facContactInformation": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ContactInformation"
+        },
+        "facContactPerson": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ContactPerson"
+        }
+      }
+    },
+    "ContactPerson": {
+      "title": "ContactPerson",
+      "description": "A specific contact person",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "language": {
+          "title": "language",
+          "description": "Language(s) that are supported via telephone or mail.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Language"
+          },
+          "minItems": 0
+        },
+        "telephoneNumber": {
+          "title": "telephoneNumber",
+          "description": "Telephone number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "faxNumber": {
+          "title": "faxNumber",
+          "description": "Fax number, which can be a general number or the number of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "eMail": {
+          "title": "eMail",
+          "description": "E-Mail address, which can be a general mail address or the mail address of a specific contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "name": {
+          "title": "name",
+          "description": "The (last) name of the contact person",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "firstName": {
+          "title": "firstName",
+          "description": "The first name of the contact person",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "title": {
+          "title": "title",
+          "description": "Title information of the contact person.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "position": {
+          "title": "position",
+          "description": "The position of the contact person",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "contactInformationExtensionG": {
+          "title": "contactInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "contactPersonExtensionG": {
+          "title": "contactPersonExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "name"
+      ]
+    },
+    "Credential": {
+      "title": "Credential",
+      "description": "Class containing reference to a credential (identifiable persistent identity)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "title": "type",
+          "description": "Type of credential",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CredentialTypeEnumG"
+        },
+        "otherType": {
+          "title": "otherType",
+          "description": "Some other type of credential",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "credentialExtensionG": {
+          "title": "credentialExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "type"
+      ]
+    },
+    "CredentialAssigned": {
+      "title": "CredentialAssigned",
+      "description": "Information concerning a specific credential that is used for verification for one AssignedRight. Specialisation of a general credential.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "title": "type",
+          "description": "Type of credential",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CredentialTypeEnumG"
+        },
+        "otherType": {
+          "title": "otherType",
+          "description": "Some other type of credential",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "localIdentifier": {
+          "title": "localIdentifier",
+          "description": "Identifier issued by credential issuer.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "issuer": {
+          "title": "issuer",
+          "description": "Identity of the credential issuer.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationVersionedReferenceG"
+        },
+        "credentialExtensionG": {
+          "title": "credentialExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "credentialAssignedExtensionG": {
+          "title": "credentialAssignedExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "type",
+        "issuer"
+      ]
+    },
+    "CredentialG": {
+      "title": "CredentialG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facCredential": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Credential"
+        },
+        "facCredentialAssigned": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CredentialAssigned"
+        }
+      }
+    },
+    "CredentialTypeEnum": {
+      "title": "CredentialTypeEnum",
+      "description": "A list of the supported credential types available for reference.",
+      "type": "string",
+      "enum": [
+        "hangtag",
+        "permit",
+        "licensePlate",
+        "ticket",
+        "eticket",
+        "barcode",
+        "bluetooth",
+        "rfid",
+        "qrCode",
+        "other",
+        "extendedG"
+      ]
+    },
+    "CredentialTypeEnumG": {
+      "title": "CredentialTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CredentialTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CurrencyCode": {
+      "title": "CurrencyCode",
+      "description": "Three letter code defining the currency according to ISO 4217:2015 (e.g. EUR for Euro).",
+      "$ref": "DATEXII_3_Common.json#/definitions/String",
+      "pattern": "[A-Z][A-Z][A-Z]"
+    },
+    "Duration": {
+      "title": "Duration",
+      "description": "A duration of time, which may consist of years, months, days, hours, minutes, and seconds components, as defined in ISO 8601.",
+      "type": "string"
+    },
+    "DurationValue": {
+      "title": "DurationValue",
+      "description": "A measured or calculated value of a period of time.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "dataError": {
+          "title": "dataError",
+          "description": "Indication of whether the value is deemed to be erroneous by the supplier (true = erroneous). If not present, the data value is assumed to be ok. This may be used when automatic fault detection information relating to sensors is available.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "reasonForDataError": {
+          "title": "reasonForDataError",
+          "description": "The reason why the value is deemed to be erroneous by the supplier.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "accuracy": {
+          "title": "accuracy",
+          "description": "The extent to which the value is expected to be free from error, measured as a percentage of the data value. 100% means fully accurate.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "computationalMethod": {
+          "title": "computationalMethod",
+          "description": "Method of computation which has been used to compute this data value.",
+          "$ref": "DATEXII_3_Common.json#/definitions/ComputationMethodEnumG"
+        },
+        "numberOfIncompleteInputs": {
+          "title": "numberOfIncompleteInputs",
+          "description": "The number of inputs detected but not completed during the sampling or measurement period; e.g. vehicles detected entering but not exiting the detection zone.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "numberOfInputValuesUsed": {
+          "title": "numberOfInputValuesUsed",
+          "description": "The number of input values used in the sampling or measurement period to determine the data value.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "smoothingFactor": {
+          "title": "smoothingFactor",
+          "description": "Coefficient required when a moving average is computed to give specific weights to the former average and the new data. A typical formula is, F being the smoothing factor: New average = (old average) F + (new data) (1 - F).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Float"
+        },
+        "standardDeviation": {
+          "title": "standardDeviation",
+          "description": "The standard deviation of the sample of input values from which this value was derived, measured in the units of the data value. ",
+          "$ref": "DATEXII_3_Common.json#/definitions/Float"
+        },
+        "supplierCalculatedDataQuality": {
+          "title": "supplierCalculatedDataQuality",
+          "description": "A measure of data quality assigned to the value by the supplier. 100% equates to ideal/perfect quality. The method of calculation is supplier specific and needs to be agreed between supplier and client.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "duration": {
+          "title": "duration",
+          "description": "A period of time expressed in seconds.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "dataValueExtensionG": {
+          "title": "dataValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "durationValueExtensionG": {
+          "title": "durationValueExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "duration"
+      ]
+    },
+    "Eligibility": {
+      "title": "Eligibility",
+      "description": "Class support concepts for defining eligibility criteria.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "eligibilityName": {
+          "title": "eligibilityName",
+          "description": "Free-text name for the eligibility definition",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "Free-text description for the eligibility definition",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "qualification": {
+          "title": "qualification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/Qualification"
+          },
+          "minItems": 0
+        },
+        "eligibilityExtensionG": {
+          "title": "eligibilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "EnergySourceEnum": {
+      "title": "EnergySourceEnum",
+      "description": "Type of fuel used by a vehicle.",
+      "type": "string",
+      "enum": [
+        "all",
+        "battery",
+        "biodiesel",
+        "diesel",
+        "dieselBatteryHybrid",
+        "ethanol",
+        "hydrogen",
+        "liquidGas",
+        "lpg",
+        "methane",
+        "petrol",
+        "petrol95Octane",
+        "petrol98Octane",
+        "petrolBatteryHybrid",
+        "petrolLeaded",
+        "petrolUnleaded",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "EnergySourceEnumG": {
+      "title": "EnergySourceEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/EnergySourceEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "FacilityG": {
+      "title": "FacilityG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "egiElectricChargingPoint": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricChargingPoint"
+        },
+        "egiEnergyInfrastructureStation": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureStation"
+        },
+        "egiEnergyInfrastructureSite": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureSite"
+        },
+        "rerSpecificDestinationFacility": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/SpecificDestinationFacility"
+        }
+      }
+    },
+    "FacilityObjectG": {
+      "title": "FacilityObjectG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "egiElectricChargingPoint": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricChargingPoint"
+        },
+        "egiEnergyInfrastructureStation": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureStation"
+        },
+        "egiEnergyInfrastructureSite": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureSite"
+        },
+        "rerSpecificDestinationFacility": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/SpecificDestinationFacility"
+        }
+      }
+    },
+    "FreeOfCharge": {
+      "title": "FreeOfCharge",
+      "description": "There are no rates or fees to be paid.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+          },
+          "minItems": 0
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "energyPricingPolicy": {
+          "title": "energyPricingPolicy",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyPricingPolicy"
+        },
+        "ratesExtensionG": {
+          "title": "ratesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "freeOfChargeExtensionG": {
+          "title": "freeOfChargeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "GeneralRateInformation": {
+      "title": "GeneralRateInformation",
+      "description": "Some general rates and payment information without specifying rates as such.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+          },
+          "minItems": 0
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "energyPricingPolicy": {
+          "title": "energyPricingPolicy",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyPricingPolicy"
+        },
+        "ratesExtensionG": {
+          "title": "ratesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "generalRateInformationExtensionG": {
+          "title": "generalRateInformationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "Image": {
+      "title": "Image",
+      "description": "An image, with encoded data and identification of format",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "imageData": {
+          "title": "imageData",
+          "description": "Encoded image data",
+          "$ref": "DATEXII_3_Common.json#/definitions/Base64Binary"
+        },
+        "imageFormat": {
+          "title": "imageFormat",
+          "description": "Identifies the image format of the associated image data",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ImageFormatEnumG"
+        },
+        "imageExtensionG": {
+          "title": "imageExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "imageData",
+        "imageFormat"
+      ]
+    },
+    "ImageFormatEnum": {
+      "title": "ImageFormatEnum",
+      "description": "Identifies an image format",
+      "type": "string",
+      "enum": [
+        "bmp",
+        "gif",
+        "jpeg",
+        "png",
+        "extendedG"
+      ]
+    },
+    "ImageFormatEnumG": {
+      "title": "ImageFormatEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ImageFormatEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "MeansOfPaymentEnum": {
+      "title": "MeansOfPaymentEnum",
+      "description": "Means of payment",
+      "type": "string",
+      "enum": [
+        "paymentCreditCard",
+        "cashBillsOnly",
+        "cashCoinsOnly",
+        "tollTag",
+        "mobileAccount",
+        "cashCoinsAndBills",
+        "prepay",
+        "paymentDebitCard",
+        "paymentValueCard",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "MeansOfPaymentEnumG": {
+      "title": "MeansOfPaymentEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/MeansOfPaymentEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OpenAllHours": {
+      "title": "OpenAllHours",
+      "description": "Open or available all the time (24/7)",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ClosureInformation"
+        },
+        "operatingHoursExtensionG": {
+          "title": "operatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "openAllHoursExtensionG": {
+          "title": "openAllHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "OperatingHoursByReference": {
+      "title": "OperatingHoursByReference",
+      "description": "Operating hours information that is addressed via a reference.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "operatingHoursReference": {
+          "title": "operatingHoursReference",
+          "description": "The reference to an operating hours specification.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursSpecificationVersionedReferenceG"
+        },
+        "operatingHoursTableReference": {
+          "title": "operatingHoursTableReference",
+          "description": "Operation hours table in question defined by a reference.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursTableVersionedReferenceG"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ClosureInformation"
+        },
+        "operatingHoursExtensionG": {
+          "title": "operatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "operatingHoursByReferenceExtensionG": {
+          "title": "operatingHoursByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operatingHoursReference"
+      ]
+    },
+    "OperatingHoursG": {
+      "title": "OperatingHoursG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facOperatingHoursSpecification": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursSpecification"
+        },
+        "facUnknownOperatingHours": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/UnknownOperatingHours"
+        },
+        "facOperatingHoursByReference": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursByReference"
+        },
+        "facOpenAllHours": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OpenAllHours"
+        },
+        "facUndefinedOperatingHours": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/UndefinedOperatingHours"
+        }
+      }
+    },
+    "OperatingHoursSpecification": {
+      "title": "OperatingHoursSpecification",
+      "description": "A specification of operating hours (e.g. for a parking site, a service facility, an access or the availability for equipment).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "label": {
+          "title": "label",
+          "description": "A label, name or identifier for this operating hours specification.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "operatingAllYear": {
+          "title": "operatingAllYear",
+          "description": "The facility or organisation is not closed on a seasonal base.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "urlLinkAddress": {
+          "title": "urlLinkAddress",
+          "description": "A Uniform Resource Locator (URL) address pointing to a resource available on the Internet from where further relevant information may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ClosureInformation"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "description": "The specification of operating hours by an overall period combined with valid or exceptional periods.",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "operatingHoursExtensionG": {
+          "title": "operatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "operatingHoursSpecificationExtensionG": {
+          "title": "operatingHoursSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "overallPeriod"
+      ]
+    },
+    "OperatingHoursSpecificationVersionedReferenceG": {
+      "title": "OperatingHoursSpecificationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursSpecification"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OperatingHoursTableVersionedReferenceG": {
+      "title": "OperatingHoursTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "OperatingHoursTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "OrganisationG": {
+      "title": "OrganisationG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facOrganisationSpecification": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationSpecification"
+        }
+      }
+    },
+    "OrganisationPublication": {
+      "title": "OrganisationPublication",
+      "description": "A publication defining one or more tables that have entries of organisation specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Language"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/definitions/InternationalIdentifier"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "DATEXII_3_Common.json#/definitions/HeaderInformation"
+        },
+        "organisationTable": {
+          "title": "organisationTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationTable"
+          },
+          "minItems": 1
+        },
+        "payloadPublicationExtensionG": {
+          "title": "payloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "organisationPublicationExtensionG": {
+          "title": "organisationPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "organisationTable"
+      ]
+    },
+    "OrganisationSpecification": {
+      "title": "OrganisationSpecification",
+      "description": "Specification of an organisation. It must contain at least one unit.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "name": {
+          "title": "name",
+          "description": "Name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "externalCode": {
+          "title": "externalCode",
+          "description": "An external code to identify the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "legalName": {
+          "title": "legalName",
+          "description": "The legal name of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "linkToGeneralInformation": {
+          "title": "linkToGeneralInformation",
+          "description": "An internet address from where further relevant information about this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "linkToLogo": {
+          "title": "linkToLogo",
+          "description": "An internet address from where the logo of this organisation may be obtained.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "linkToWebform": {
+          "title": "linkToWebform",
+          "description": "An internet address pointing to a webform, which people can use to send messages to this organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "available24hours": {
+          "title": "available24hours",
+          "description": "Specifies if the availability is 24 hours a day. If omitted, this information is unknown or heterogeneous.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "responsibility": {
+          "title": "responsibility",
+          "description": "Specification of services or other duties the organisation is responsible for,",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "publishingAgreement": {
+          "title": "publishingAgreement",
+          "description": "Indication whether the organisation accepted publishing its information.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "type": {
+          "title": "type",
+          "description": "Information whether the organisation in question belongs to the public or private sector.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationTypeEnumG"
+        },
+        "nationalOrganisationNumber": {
+          "title": "nationalOrganisationNumber",
+          "description": "The national organisation number in the specified national register, if applicable.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "nationalRegister": {
+          "title": "nationalRegister",
+          "description": "A national register where the organisation is registered.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "vatIdentificationNumber": {
+          "title": "vatIdentificationNumber",
+          "description": "The VAT identification number of the organisation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "organisationUnit": {
+          "title": "organisationUnit",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationUnit"
+          },
+          "minItems": 1
+        },
+        "subOrganisation": {
+          "title": "subOrganisation",
+          "description": "A sub organisation that could substitute its role",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+          },
+          "minItems": 0
+        },
+        "organisationExtensionG": {
+          "title": "organisationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "organisationSpecificationExtensionG": {
+          "title": "organisationSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "name",
+        "organisationUnit"
+      ]
+    },
+    "OrganisationTable": {
+      "title": "OrganisationTable",
+      "description": "A table comprising a number of organisation specifications.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of the organisation table.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "versionTime": {
+          "title": "versionTime",
+          "description": "The date/time that this version of the organisation table was defined by the supplier. The identity and version of the table are defined by the class stereotype implementation.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "informationManager": {
+          "title": "informationManager",
+          "description": "Organisation that manages the information content (is responsible for updates of this information) typically the organisation that first made the DATEX II publication of this content.",
+          "$ref": "DATEXII_3_Common.json#/definitions/InternationalIdentifier"
+        },
+        "organisationSpecification": {
+          "title": "organisationSpecification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationSpecification"
+          },
+          "minItems": 1
+        },
+        "organisationTableExtensionG": {
+          "title": "organisationTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "versionTime",
+        "organisationSpecification"
+      ]
+    },
+    "OrganisationTypeEnum": {
+      "title": "OrganisationTypeEnum",
+      "description": "Type of organisation.",
+      "type": "string",
+      "enum": [
+        "publicSector",
+        "privateSector",
+        "extendedG"
+      ]
+    },
+    "OrganisationTypeEnumG": {
+      "title": "OrganisationTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OrganisationUnit": {
+      "title": "OrganisationUnit",
+      "description": "A unit within the organisation, which has got seperate location, operating hours, address and/or contacts.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "name": {
+          "title": "name",
+          "description": "A name for this organisation unit",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "function": {
+          "title": "function",
+          "description": "Functions this unit is responsible for or a specific type, e.g. headquarter or sales",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "contactInformation": {
+          "title": "contactInformation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/ContactInformationG"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursG"
+        },
+        "organisationUnitExtensionG": {
+          "title": "organisationUnitExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "OrganisationVersionedReferenceG": {
+      "title": "OrganisationVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "Organisation"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "PaymentBrandsEnum": {
+      "title": "PaymentBrandsEnum",
+      "description": "Brands for payment cards",
+      "type": "string",
+      "enum": [
+        "americanExpress",
+        "applePay",
+        "cirrus",
+        "dinersClub",
+        "discoverCard",
+        "giroCard",
+        "maestro",
+        "masterCard",
+        "visa",
+        "vpay",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PaymentBrandsEnumG": {
+      "title": "PaymentBrandsEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentBrandsEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PaymentMethod": {
+      "title": "PaymentMethod",
+      "description": "Provides information on the means of payment available",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "paymentMeans": {
+          "title": "paymentMeans",
+          "description": "The means of payment available",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/MeansOfPaymentEnumG"
+          },
+          "minItems": 0
+        },
+        "paymentMode": {
+          "title": "paymentMode",
+          "description": "Defines the timing of the parking or other mobility related payment",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentTimingEnumG"
+          },
+          "minItems": 0
+        },
+        "brandsAcceptedText": {
+          "title": "brandsAcceptedText",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/BrandsAcceptedText"
+          },
+          "minItems": 0
+        },
+        "brandsAcceptedCodeList": {
+          "title": "brandsAcceptedCodeList",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/BrandsAcceptedCodeList"
+          },
+          "minItems": 0
+        },
+        "paymentMethodExtensionG": {
+          "title": "paymentMethodExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PaymentTimingEnum": {
+      "title": "PaymentTimingEnum",
+      "description": "Details of when payment is required.",
+      "type": "string",
+      "enum": [
+        "prepay",
+        "payOnEntry",
+        "payPriorToExit",
+        "payAndExit",
+        "payAfterExit",
+        "other",
+        "extendedG"
+      ]
+    },
+    "PaymentTimingEnumG": {
+      "title": "PaymentTimingEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentTimingEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Qualification": {
+      "title": "Qualification",
+      "description": "A singular set of criteria used to test eligibility for use of a rate table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "withReservation": {
+          "title": "withReservation",
+          "description": "Indicates whether a reservation is required. [TRUE] reservation required",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "propulsionEnergyType": {
+          "title": "propulsionEnergyType",
+          "description": "Indicates eligible fuel types for applicable vehicles",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/EnergySourceEnumG"
+          },
+          "minItems": 0
+        },
+        "noFeeToUse": {
+          "title": "noFeeToUse",
+          "description": "Specific facility is free or not. [TRUE] (e.g. free to park)",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "withMembership": {
+          "title": "withMembership",
+          "description": "Indicates that a membership is required. [TRUE] membership required",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "membershipName": {
+          "title": "membershipName",
+          "description": "Free-text description of the membership",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "memberOfOtherRateTable": {
+          "title": "memberOfOtherRateTable",
+          "description": "Indicates if this qualification can be used in combination with the use of another rate table. [TRUE]= member of (i.e., used) another rate table.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "rateTableMember": {
+          "title": "rateTableMember",
+          "description": "Reference to another rate table membership",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/RateTableVersionedReferenceG"
+          },
+          "minItems": 0
+        },
+        "activeAssignedRight": {
+          "title": "activeAssignedRight",
+          "description": "Indication of an assigned right.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+          },
+          "minItems": 0
+        },
+        "vehicleCharacteristics": {
+          "title": "vehicleCharacteristics",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+          },
+          "minItems": 0
+        },
+        "userQualification": {
+          "title": "userQualification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/UserQualification"
+          },
+          "minItems": 0
+        },
+        "qualificationExtensionG": {
+          "title": "qualificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "RateAvailabilityTypeEnum": {
+      "title": "RateAvailabilityTypeEnum",
+      "description": "A list of rate availability types.",
+      "type": "string",
+      "enum": [
+        "private",
+        "public",
+        "restricted",
+        "extendedG"
+      ]
+    },
+    "RateAvailabilityTypeEnumG": {
+      "title": "RateAvailabilityTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateAvailabilityTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RateDiscount": {
+      "title": "RateDiscount",
+      "description": "Class defining discount rates to be applied to a RateTable",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "discountRate": {
+          "title": "discountRate",
+          "description": "Proportionate discount (-) or surcharge (+) to be applied to all values in the referenced RateTable ",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "fixedValue": {
+          "title": "fixedValue",
+          "description": "Fixed value discount (-) or surcharge (+) to be applied to all values in the referenced RateTable ",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountInCurrency"
+        },
+        "rateDiscountExtensionG": {
+          "title": "rateDiscountExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "RateEligibility": {
+      "title": "RateEligibility",
+      "description": "Defines the combination of Eligibility requirements with RateTables and associates this combination to a RightSpecification.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "priority": {
+          "title": "priority",
+          "description": "An integer value, starting at 1, indicating the order in which multiple relevant RateTables shall be considered, with 1 being the highest priority.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "combinable": {
+          "title": "combinable",
+          "description": "Boolean attribute that indicates (TRUE) if all RateTables associated to a RightSpecification with a common Eligibility can be combined to establish a lowest cost tariff or (FALSE) they cannot be combined.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "rateDiscount": {
+          "title": "rateDiscount",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateDiscount"
+        },
+        "eligibility": {
+          "title": "eligibility",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Eligibility"
+        },
+        "rightSpecification": {
+          "title": "rightSpecification",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/RightSpecification"
+          },
+          "minItems": 0
+        },
+        "rateEligibilityExtensionG": {
+          "title": "rateEligibilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "eligibility"
+      ]
+    },
+    "RateLine": {
+      "title": "RateLine",
+      "description": "A specific rate element of a rate line collection within a specific rate table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "sequence": {
+          "title": "sequence",
+          "description": "The ordered sequence of this RateLine instance within the RateLineCollection",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "rateLineType": {
+          "title": "rateLineType",
+          "description": "Indicates the nature of the rate line",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateLineTypeEnumG"
+        },
+        "description": {
+          "title": "description",
+          "description": "Free-text description associated with this rate line.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "durationStart": {
+          "title": "durationStart",
+          "description": "If used, indicates the start time for the applicability of the specific rate line, generally with respect to the start of the parking or other mobility session. e.g. the start of a time-based tier charge rate.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Time"
+        },
+        "durationEnd": {
+          "title": "durationEnd",
+          "description": "If used, indicates the end time for the applicability of the specific rate line, generally with respect to the start of the parking or other mobility session. e.g. the end of a time-based tier charge rate.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Time"
+        },
+        "incrementPeriod": {
+          "title": "incrementPeriod",
+          "description": "The time period for incrementing the rate line charge. If set to the same as the duration of the period between the durationStart and durationEnd, the increment will occur once per period, i.e. a flat rate time-based tier charge rate.  ",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Duration"
+        },
+        "value": {
+          "title": "value",
+          "description": "The value of the fee to be charged in respect of this rate line",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "minValue": {
+          "title": "minValue",
+          "description": "The minimum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "maxValue": {
+          "title": "maxValue",
+          "description": "The maximum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "usageCondition": {
+          "title": "usageCondition",
+          "description": "Indicates conditions on the use of this rate line",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateUsageConditionsTypeEnumG"
+        },
+        "surcharge": {
+          "title": "surcharge",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/Surcharge"
+          },
+          "minItems": 0
+        },
+        "rateLineTax": {
+          "title": "rateLineTax",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/RateLineTax"
+          },
+          "minItems": 0
+        },
+        "rateLineExtensionG": {
+          "title": "rateLineExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "rateLineType",
+        "sequence",
+        "value"
+      ]
+    },
+    "RateLineCollection": {
+      "title": "RateLineCollection",
+      "description": "A group of rate line elements that logically group together within one rate table, e.g. such as the rate lines for the different tiers of a time-based tier rate table.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "collectionSequence": {
+          "title": "collectionSequence",
+          "description": "An indicator giving the place in sequence of this rate line collection",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "The monetary currency that rates are specified in this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+        },
+        "minValueCollection": {
+          "title": "minValueCollection",
+          "description": "The minimum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "maxValueCollection": {
+          "title": "maxValueCollection",
+          "description": "The maximum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "validStart": {
+          "title": "validStart",
+          "description": "The start time for the validity of this rate line collection",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "validEnd": {
+          "title": "validEnd",
+          "description": "The end time for the validity of this rate line collection",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "minTime": {
+          "title": "minTime",
+          "description": "A minimum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Duration"
+        },
+        "maxTime": {
+          "title": "maxTime",
+          "description": "A maximum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Duration"
+        },
+        "resetTime": {
+          "title": "resetTime",
+          "description": "Time that rate resets",
+          "$ref": "DATEXII_3_Common.json#/definitions/Time"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included within the total rate associated with this rate line collection. [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "taxValue": {
+          "title": "taxValue",
+          "description": "The monetary amount of tax to be applied.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "relativeTimes": {
+          "title": "relativeTimes",
+          "description": "[TRUE] Indicates whether times relative to the start of an external event are used as the basis for rate calculation. [FALSE] indicates that rate calculation definitions are based on local or UTC times (for example the duration of a parking session).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "rateLine": {
+          "title": "rateLine",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/RateLine"
+          },
+          "minItems": 1
+        },
+        "rateLineCollectionExtensionG": {
+          "title": "rateLineCollectionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "collectionSequence",
+        "rateLine"
+      ]
+    },
+    "RateLineCollectionG": {
+      "title": "RateLineCollectionG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facRateLineCollection": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateLineCollection"
+        },
+        "facRelativeTimeRates": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RelativeTimeRates"
+        }
+      }
+    },
+    "RateLineTax": {
+      "title": "RateLineTax",
+      "description": "Class containing details of tax to be applied to a RateLine",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "taxValue": {
+          "title": "taxValue",
+          "description": "The monetary amount of tax to be applied.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included within the total rate associated with this rate line. [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "trigger": {
+          "title": "trigger",
+          "description": "Free-text definition of boundary condition setting applicability of the tax",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "labelForDisplay": {
+          "title": "labelForDisplay",
+          "description": "Free-text for display on a receipt and/or in a user interface",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "rateLineTaxExtensionG": {
+          "title": "rateLineTaxExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "taxIncluded"
+      ]
+    },
+    "RateLineTypeEnum": {
+      "title": "RateLineTypeEnum",
+      "description": "A list of rate line types.",
+      "type": "string",
+      "enum": [
+        "flatRate",
+        "incrementingRate",
+        "flatRateTier",
+        "perUnit",
+        "extendedG"
+      ]
+    },
+    "RateLineTypeEnumG": {
+      "title": "RateLineTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateLineTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RateMatrixVersionedReferenceG": {
+      "title": "RateMatrixVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "RateMatrix"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "RatesByReference": {
+      "title": "RatesByReference",
+      "description": "Reference to a rate table previously specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+          },
+          "minItems": 0
+        },
+        "rateTableReference": {
+          "title": "rateTableReference",
+          "description": "Reference to rate information specified in a rate table.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateTableVersionedReferenceG"
+        },
+        "rateMatrixReference": {
+          "title": "rateMatrixReference",
+          "description": "Reference to the corresponding rate matrix.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateMatrixVersionedReferenceG"
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "energyPricingPolicy": {
+          "title": "energyPricingPolicy",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyPricingPolicy"
+        },
+        "ratesExtensionG": {
+          "title": "ratesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "ratesByReferenceExtensionG": {
+          "title": "ratesByReferenceExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "rateTableReference"
+      ]
+    },
+    "RatesG": {
+      "title": "RatesG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "facUnknownRates": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/UnknownRates"
+        },
+        "facGeneralRateInformation": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/GeneralRateInformation"
+        },
+        "facRatesByReference": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RatesByReference"
+        },
+        "facUnspecifiedRates": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/UnspecifiedRates"
+        },
+        "facRateTable": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateTable"
+        },
+        "facFreeOfCharge": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/FreeOfCharge"
+        }
+      }
+    },
+    "RateTable": {
+      "title": "RateTable",
+      "description": "A specific set of rate charges relating to one or more locations and optionally one set of eligibility criteria. ",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+          },
+          "minItems": 0
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The date/time at which this information was last updated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "rateTableName": {
+          "title": "rateTableName",
+          "description": "Name of the Rate Table",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "activeTimes": {
+          "title": "activeTimes",
+          "description": "Periods when the rate table is to be applied.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/Duration"
+          },
+          "minItems": 0
+        },
+        "availability": {
+          "title": "availability",
+          "description": "Availability of Rate to the public.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateAvailabilityTypeEnumG"
+        },
+        "rateResponsibleParty": {
+          "title": "rateResponsibleParty",
+          "description": "Entity responsible for fee collection. Identifies the entity that actually collects payment (e.g. mobile payment provider, online reservation firm, on-site operations)",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationVersionedReferenceG"
+        },
+        "rateSupersedeLink": {
+          "title": "rateSupersedeLink",
+          "description": "Identify the rate table that this rate table supersedes. Temporarily supersedes the identified rate table. Use the Rate expiration times to define duration. ",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateTableVersionedReferenceG"
+        },
+        "validation": {
+          "title": "validation",
+          "description": "Are validations accepted when using this rate table? [TRUE] = validations can be applied to transactions using this rate table; [FALSE] validations cannot be applicated to transactions using this rate table.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "rateType": {
+          "title": "rateType",
+          "description": "Defines the type of rate in use.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateTypeEnumG"
+        },
+        "validityStart": {
+          "title": "validityStart",
+          "description": "Valid start date/time of rate table.  This is when the rate table and pricing become active",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "validityEnd": {
+          "title": "validityEnd",
+          "description": "Expiration of rate table in date/time.  This is when the rate table and pricing expires and is no longer used.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "additionalInformation": {
+          "title": "additionalInformation",
+          "description": "URI locator for supplementary additional information concerning use of the rate table",
+          "$ref": "DATEXII_3_Common.json#/definitions/Url"
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "energyPricingPolicy": {
+          "title": "energyPricingPolicy",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyPricingPolicy"
+        },
+        "rateLineCollection": {
+          "title": "rateLineCollection",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/RateLineCollectionG"
+          },
+          "minItems": 0
+        },
+        "rateEligibility": {
+          "title": "rateEligibility",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateEligibility"
+        },
+        "ratesExtensionG": {
+          "title": "ratesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "rateTableExtensionG": {
+          "title": "rateTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "RateTableVersionedReferenceG": {
+      "title": "RateTableVersionedReferenceG",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "RateTable"
+        },
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "targetClass",
+        "idG"
+      ]
+    },
+    "RateTypeEnum": {
+      "title": "RateTypeEnum",
+      "description": "A list of supported rate types.",
+      "type": "string",
+      "enum": [
+        "contract",
+        "daily",
+        "event",
+        "hourly",
+        "extendedG"
+      ]
+    },
+    "RateTypeEnumG": {
+      "title": "RateTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RateUsageConditionsTypeEnum": {
+      "title": "RateUsageConditionsTypeEnum",
+      "description": "A list of supported rate usage condition types.",
+      "type": "string",
+      "enum": [
+        "fixedDuration",
+        "fixedNumber",
+        "once",
+        "unlimited",
+        "extendedG"
+      ]
+    },
+    "RateUsageConditionsTypeEnumG": {
+      "title": "RateUsageConditionsTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RateUsageConditionsTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RefundTypeEnum": {
+      "title": "RefundTypeEnum",
+      "description": "A list of available refund categories.",
+      "type": "string",
+      "enum": [
+        "surchargeNonRefundable",
+        "surchargePartiallyRefundable",
+        "surchargeFullyRefundable",
+        "extendedG"
+      ]
+    },
+    "RefundTypeEnumG": {
+      "title": "RefundTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RefundTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RelativeTimeRates": {
+      "title": "RelativeTimeRates",
+      "description": "A class supporting the specification of times for defining rate applicability that are relative to a defined referenceTimeStart of an event.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "collectionSequence": {
+          "title": "collectionSequence",
+          "description": "An indicator giving the place in sequence of this rate line collection",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "The monetary currency that rates are specified in this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+        },
+        "minValueCollection": {
+          "title": "minValueCollection",
+          "description": "The minimum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "maxValueCollection": {
+          "title": "maxValueCollection",
+          "description": "The maximum monetary amount to be applied in conjunction with use of this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "validStart": {
+          "title": "validStart",
+          "description": "The start time for the validity of this rate line collection",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "validEnd": {
+          "title": "validEnd",
+          "description": "The end time for the validity of this rate line collection",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "minTime": {
+          "title": "minTime",
+          "description": "A minimum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Duration"
+        },
+        "maxTime": {
+          "title": "maxTime",
+          "description": "A maximum parking session duration to be applied to this rate line collection.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/Duration"
+        },
+        "resetTime": {
+          "title": "resetTime",
+          "description": "Time that rate resets",
+          "$ref": "DATEXII_3_Common.json#/definitions/Time"
+        },
+        "taxIncluded": {
+          "title": "taxIncluded",
+          "description": "[TRUE] Indication that tax to be applied is included within the total rate associated with this rate line collection. [FALSE] indicates that the tax is added additionally to the total.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "taxRate": {
+          "title": "taxRate",
+          "description": "The percentage rate of tax to be applied.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "taxValue": {
+          "title": "taxValue",
+          "description": "The monetary amount of tax to be applied.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "relativeTimes": {
+          "title": "relativeTimes",
+          "description": "[TRUE] Indicates whether times relative to the start of an external event are used as the basis for rate calculation. [FALSE] indicates that rate calculation definitions are based on local or UTC times (for example the duration of a parking session).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "referenceTimeStart": {
+          "title": "referenceTimeStart",
+          "description": "Event-related reference start time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "referenceTimeEnd": {
+          "title": "referenceTimeEnd",
+          "description": "Event-related reference end time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "rateLine": {
+          "title": "rateLine",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/RateLine"
+          },
+          "minItems": 1
+        },
+        "rateLineCollectionExtensionG": {
+          "title": "rateLineCollectionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "relativeTimeRatesExtensionG": {
+          "title": "relativeTimeRatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "collectionSequence",
+        "rateLine"
+      ]
+    },
+    "RightSpecification": {
+      "title": "RightSpecification",
+      "description": "A Right Specification explicitly defines what the owner/manager of a Place is granting specific users or vehicles the ability to do (e.g. park, delivery, pick up).",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "type": {
+          "title": "type",
+          "description": "Defines the type of Right Specification.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RightTypeEnumG"
+        },
+        "description": {
+          "title": "description",
+          "description": "Free-text description of a RightSpecification.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+          },
+          "minItems": 0
+        },
+        "expiry": {
+          "title": "expiry",
+          "description": "Date/time showing the timestamp for when a RightSpecification ceases to be valid.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "financialReference": {
+          "title": "financialReference",
+          "description": "Creator defined free-text reference to financial transactions associated to the specific Right Specification.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "issuer": {
+          "title": "issuer",
+          "description": "The issuer of this right.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationVersionedReferenceG"
+        },
+        "noFeeToUse": {
+          "title": "noFeeToUse",
+          "description": "If TRUE Indicates that the related RightSpecification may be used without charge or cost. If FALSE costs and charges apply",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "credential": {
+          "title": "credential",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CredentialG"
+          },
+          "minItems": 0
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/definitions/Validity"
+        },
+        "rightSpecificationExtensionG": {
+          "title": "rightSpecificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "RightTypeEnum": {
+      "title": "RightTypeEnum",
+      "description": "A list of the supported RightSpecification types available for reference.",
+      "type": "string",
+      "enum": [
+        "oneTimeUseParking",
+        "permitParking",
+        "loadingUnloading",
+        "setdownPickup",
+        "waiting",
+        "accessPermission",
+        "doingReservation",
+        "electricCharging",
+        "extendedG"
+      ]
+    },
+    "RightTypeEnumG": {
+      "title": "RightTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RightTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "SupplementalFacilityG": {
+      "title": "SupplementalFacilityG",
+      "type": "object",
+      "additionalProperties": false
+    },
+    "Surcharge": {
+      "title": "Surcharge",
+      "description": "Free-text description of the condition that leads to a surcharge being applied",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "surchargeType": {
+          "title": "surchargeType",
+          "description": "Indicates the nature of the surcharge to be applied",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/SurchargeTypeEnumG"
+        },
+        "value": {
+          "title": "value",
+          "description": "The monetary amount of the surcharge",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "rate": {
+          "title": "rate",
+          "description": "The percentage rate surcharge to be applied",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "trigger": {
+          "title": "trigger",
+          "description": "Free-text definition of boundary condition setting applicability of the surcharge value.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "refund": {
+          "title": "refund",
+          "description": "Indicates the nature of the refund of the surcharge that is available",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RefundTypeEnumG"
+        },
+        "labelForDisplay": {
+          "title": "labelForDisplay",
+          "description": "Free-text for display on a receipt and/or in a user interface",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "surchargeExtensionG": {
+          "title": "surchargeExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "surchargeType"
+      ]
+    },
+    "SurchargeTypeEnum": {
+      "title": "SurchargeTypeEnum",
+      "description": "Types of surcharge that can be applied.",
+      "type": "string",
+      "enum": [
+        "reservation",
+        "mobilePayment",
+        "deposit",
+        "membershipFee",
+        "extendedG"
+      ]
+    },
+    "SurchargeTypeEnumG": {
+      "title": "SurchargeTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/SurchargeTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "TimeZone": {
+      "title": "TimeZone",
+      "description": "Identifies a time zone by specifying the difference to UTC in hours and minutes, as defined in ISO 8601.",
+      "$ref": "DATEXII_3_Common.json#/definitions/String"
+    },
+    "UndefinedOperatingHours": {
+      "title": "UndefinedOperatingHours",
+      "description": "There are no operating hours specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ClosureInformation"
+        },
+        "operatingHoursExtensionG": {
+          "title": "operatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "undefinedOperatingHoursExtensionG": {
+          "title": "undefinedOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownOperatingHours": {
+      "title": "UnknownOperatingHours",
+      "description": "The operating hours are not known.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "closureInformation": {
+          "title": "closureInformation",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/ClosureInformation"
+        },
+        "operatingHoursExtensionG": {
+          "title": "operatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "unknownOperatingHoursExtensionG": {
+          "title": "unknownOperatingHoursExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UnknownRates": {
+      "title": "UnknownRates",
+      "description": "There is no information about rates.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+          },
+          "minItems": 0
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "energyPricingPolicy": {
+          "title": "energyPricingPolicy",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyPricingPolicy"
+        },
+        "ratesExtensionG": {
+          "title": "ratesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "unknownRatesExtensionG": {
+          "title": "unknownRatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UnspecifiedRates": {
+      "title": "UnspecifiedRates",
+      "description": "Rates are not (yet) specified.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "applicableCurrency": {
+          "title": "applicableCurrency",
+          "description": "A general information on the applicable monetary currency.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/CurrencyCode"
+          },
+          "minItems": 0
+        },
+        "paymentMethod": {
+          "title": "paymentMethod",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/PaymentMethod"
+        },
+        "overallPeriod": {
+          "title": "overallPeriod",
+          "$ref": "DATEXII_3_Common.json#/definitions/OverallPeriod"
+        },
+        "energyPricingPolicy": {
+          "title": "energyPricingPolicy",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyPricingPolicy"
+        },
+        "ratesExtensionG": {
+          "title": "ratesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "unspecifiedRatesExtensionG": {
+          "title": "unspecifiedRatesExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UserQualification": {
+      "title": "UserQualification",
+      "description": "Class supporting the definition of user group characteristics",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "userGroup": {
+          "title": "userGroup",
+          "description": "Indicates the user-defined user group qualification",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/UserTypeEnumG"
+        },
+        "userQualificationExtensionG": {
+          "title": "userQualificationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "userGroup"
+      ]
+    },
+    "UserTypeEnum": {
+      "title": "UserTypeEnum",
+      "description": "Types of different users, for example used in the context of parking.",
+      "type": "string",
+      "enum": [
+        "allUsers",
+        "commuters",
+        "customers",
+        "elderlyUsers",
+        "employees",
+        "families",
+        "hearingImpaired",
+        "hotelGuests",
+        "longTermParkers",
+        "members",
+        "men",
+        "overnightParkers",
+        "parkAndCycleUser",
+        "parkAndRideUsers",
+        "parkAndWalkUser",
+        "pensioners",
+        "pregnantWomen",
+        "registeredDisabledUsers",
+        "reservationHolders",
+        "residents",
+        "seasonTicketHolders",
+        "shoppers",
+        "shortTermParkers",
+        "sportEventAwaySupporters",
+        "sportEventHomeSupporters",
+        "students",
+        "staff",
+        "subscribers",
+        "visitors",
+        "visuallyImpaired",
+        "wheelchairUsers",
+        "women",
+        "unknown",
+        "other",
+        "extendedG"
+      ]
+    },
+    "UserTypeEnumG": {
+      "title": "UserTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_Facilities.json#/definitions/UserTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    }
+  }
+}

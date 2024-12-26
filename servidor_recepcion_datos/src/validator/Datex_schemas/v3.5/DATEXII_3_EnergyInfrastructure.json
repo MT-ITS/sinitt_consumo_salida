@@ -1,0 +1,788 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "Ampere": {
+      "title": "Ampere",
+      "description": "Ampere.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "AuthenticationAndIdentificationEnum": {
+      "title": "AuthenticationAndIdentificationEnum",
+      "description": "A table of authentication and/or identification methods",
+      "type": "string",
+      "enum": [
+        "activeRFIDChip",
+        "apps",
+        "calypso",
+        "cashPayment",
+        "creditCard",
+        "debitCard",
+        "mifareClassic",
+        "mifareDesfire",
+        "nfc",
+        "overTheAir",
+        "phoneDialog",
+        "phoneSMS",
+        "pinpad",
+        "plc",
+        "prepaidCard",
+        "rfid",
+        "website",
+        "unlimitedAccess",
+        "noAccess",
+        "extendedG"
+      ]
+    },
+    "AuthenticationAndIdentificationEnumG": {
+      "title": "AuthenticationAndIdentificationEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/AuthenticationAndIdentificationEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ChargingModeEnum": {
+      "title": "ChargingModeEnum",
+      "description": "Charging mode according to IEC 61851-1 terminology",
+      "type": "string",
+      "enum": [
+        "mode1AC1p",
+        "mode1AC3p",
+        "mode2AC1p",
+        "mode2AC3p",
+        "mode3AC3p",
+        "mode4DC",
+        "legacyInductive",
+        "ccs",
+        "other",
+        "unknown",
+        "extendedG"
+      ]
+    },
+    "ChargingModeEnumG": {
+      "title": "ChargingModeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ChargingModeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "Connector": {
+      "title": "Connector",
+      "description": "Parameters and description of an interface that is available at the given electric charging point to connect vehicles",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "connectorType": {
+          "title": "connectorType",
+          "description": "Specification of the connector, i.e. the charging interface type",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ConnectorTypeEnumG"
+        },
+        "chargingMode": {
+          "title": "chargingMode",
+          "description": "Available charging modes",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ChargingModeEnumG"
+        },
+        "connectorFormat": {
+          "title": "connectorFormat",
+          "description": "Information on the cable type used.",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ConnectorFormatTypeEnumG"
+        },
+        "maxPowerAtSocket": {
+          "title": "maxPowerAtSocket",
+          "description": "Maximum power at the socket in Watts",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/Watt"
+        },
+        "voltage": {
+          "title": "voltage",
+          "description": "Possible degrees of voltage.",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/Volt"
+        },
+        "maximumCurrent": {
+          "title": "maximumCurrent",
+          "description": "Maximum current in Ampere",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/Ampere"
+        },
+        "connectorExtensionG": {
+          "title": "connectorExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "connectorType",
+        "maxPowerAtSocket"
+      ]
+    },
+    "ConnectorFormatTypeEnum": {
+      "title": "ConnectorFormatTypeEnum",
+      "description": "A list of cable types used during the charging process.",
+      "type": "string",
+      "enum": [
+        "cableMode2",
+        "cableMode3",
+        "otherCable",
+        "socket",
+        "extendedG"
+      ]
+    },
+    "ConnectorFormatTypeEnumG": {
+      "title": "ConnectorFormatTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ConnectorFormatTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConnectorTypeEnum": {
+      "title": "ConnectorTypeEnum",
+      "description": "A table of commonly used connectors / charging interfaces",
+      "type": "string",
+      "enum": [
+        "cee3",
+        "cee5",
+        "chademo",
+        "yazaki",
+        "domestic",
+        "domesticA",
+        "domesticB",
+        "domesticC",
+        "domesticD",
+        "domesticE",
+        "domesticF",
+        "domesticG",
+        "domesticH",
+        "domesticI",
+        "domesticJ",
+        "domesticK",
+        "domesticL",
+        "domesticM",
+        "domesticN",
+        "domesticO",
+        "iec60309x2three16",
+        "iec60309x2three32",
+        "iec60309x2three64",
+        "iec60309x2single16",
+        "iec62196T1",
+        "iec62196T1COMBO",
+        "iec62196T2",
+        "iec62196T2COMBO",
+        "iec62196T3A",
+        "iec62196T3C",
+        "pantographBottomUp",
+        "pantographTopDown",
+        "teslaConnectorEurope",
+        "teslaConnectorAmerica",
+        "teslaR",
+        "teslaS",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ConnectorTypeEnumG": {
+      "title": "ConnectorTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ConnectorTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ElectricChargingPoint": {
+      "title": "ElectricChargingPoint",
+      "description": "Technical infrastructure at a specific location that facilitates electric charging of one vehicle at a time",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "description": "An external identifier for this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "availableVoltage": {
+          "title": "availableVoltage",
+          "description": "Possible degrees of voltage.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/Volt"
+          },
+          "minItems": 0
+        },
+        "availableChargingPower": {
+          "title": "availableChargingPower",
+          "description": "Possible degrees of charging power in Watts.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/Watt"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "owner": {
+          "title": "owner",
+          "description": "The owner of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "The operator of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "rates": {
+          "title": "rates",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RatesG"
+        },
+        "supplementalFacility": {
+          "title": "supplementalFacility",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/SupplementalFacilityG"
+          },
+          "minItems": 0
+        },
+        "connector": {
+          "title": "connector",
+          "description": "Specify the connector(s).",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/Connector"
+          },
+          "minItems": 0
+        },
+        "electricEnergyMix": {
+          "title": "electricEnergyMix",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricEnergyMix"
+          },
+          "minItems": 0
+        },
+        "facilityObjectExtensionG": {
+          "title": "facilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "facilityExtensionG": {
+          "title": "facilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "refillPointExtensionG": {
+          "title": "refillPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "electricChargingPointExtensionG": {
+          "title": "electricChargingPointExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "ElectricEnergyMix": {
+      "title": "ElectricEnergyMix",
+      "description": "The energy mix and environmental impact of the supplied energy available at this charging point.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "energyMixIndex": {
+          "title": "energyMixIndex",
+          "description": "An index to link this element between the static and dynamic publications.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "isGreenEnergy": {
+          "title": "isGreenEnergy",
+          "description": "True if 100% from regenerative sources (CO2 and nuclear waste is zero)",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "electricEnergySourceRatio": {
+          "title": "electricEnergySourceRatio",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricEnergySourceRatio"
+          },
+          "minItems": 0
+        },
+        "energyProvider": {
+          "title": "energyProvider",
+          "description": "The energy provider for this electric charging point.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "rates": {
+          "title": "rates",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RatesG"
+        },
+        "electricEnergyMixExtensionG": {
+          "title": "electricEnergyMixExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "energyMixIndex"
+      ]
+    },
+    "ElectricEnergySourceRatio": {
+      "title": "ElectricEnergySourceRatio",
+      "description": "Ratio for the specified energy source",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "energySource": {
+          "title": "energySource",
+          "description": "An electric energy source",
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricEnergySourceTypeEnumG"
+        },
+        "otherEnergySource": {
+          "title": "otherEnergySource",
+          "description": "Some other energy source",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "sourceRatioValue": {
+          "title": "sourceRatioValue",
+          "description": "The percentage ratio value of this energy source.",
+          "$ref": "DATEXII_3_Common.json#/definitions/PercentageValue"
+        },
+        "electricEnergySourceRatioExtensionG": {
+          "title": "electricEnergySourceRatioExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "energySource",
+        "sourceRatioValue"
+      ]
+    },
+    "ElectricEnergySourceTypeEnum": {
+      "title": "ElectricEnergySourceTypeEnum",
+      "description": "Electric energy sources",
+      "type": "string",
+      "enum": [
+        "biogas",
+        "coal",
+        "gas",
+        "nuclear",
+        "solar",
+        "water",
+        "wind",
+        "generalGreen",
+        "generalFossil",
+        "other",
+        "extendedG"
+      ]
+    },
+    "ElectricEnergySourceTypeEnumG": {
+      "title": "ElectricEnergySourceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricEnergySourceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "EnergyInfrastructureSite": {
+      "title": "EnergyInfrastructureSite",
+      "description": "A site where vehicles can be supplied with energy, including all buildings, stations, parking spaces and other associated services.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "description": "An external identifier for this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "brand": {
+          "title": "brand",
+          "description": "The brand of the site.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "owner": {
+          "title": "owner",
+          "description": "The owner of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "The operator of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "rates": {
+          "title": "rates",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RatesG"
+        },
+        "supplementalFacility": {
+          "title": "supplementalFacility",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/SupplementalFacilityG"
+          },
+          "minItems": 0
+        },
+        "entrance": {
+          "title": "entrance",
+          "description": "Possibility to specify the location of the site's entrance.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationG"
+          },
+          "minItems": 0
+        },
+        "energyInfrastructureStation": {
+          "title": "energyInfrastructureStation",
+          "description": "Specifications of charging stations on the site.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureStation"
+          },
+          "minItems": 0
+        },
+        "facilityObjectExtensionG": {
+          "title": "facilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "facilityExtensionG": {
+          "title": "facilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "energyInfrastructureSiteExtensionG": {
+          "title": "energyInfrastructureSiteExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "EnergyInfrastructureStation": {
+      "title": "EnergyInfrastructureStation",
+      "description": "A collection of associated refill points (which can be of different type). An example would be a fuel dispenser that serves different types of fuel. Often the vehicle space of the station is shared between the different refill points.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "description": "An external identifier for this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "authenticationAndIdentificationMethods": {
+          "title": "authenticationAndIdentificationMethods",
+          "description": "Information on what methods of identification and/or authentication are accepted",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/AuthenticationAndIdentificationEnumG"
+          },
+          "minItems": 0
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "owner": {
+          "title": "owner",
+          "description": "The owner of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "The operator of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "rates": {
+          "title": "rates",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RatesG"
+        },
+        "supplementalFacility": {
+          "title": "supplementalFacility",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/SupplementalFacilityG"
+          },
+          "minItems": 0
+        },
+        "energyProvider": {
+          "title": "energyProvider",
+          "description": "The provider of the energy.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "refillPoint": {
+          "title": "refillPoint",
+          "description": "Specifications of refill points at a charging station. Note that the refillPointIndex must be unique within the complete site!",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/RefillPointG"
+          },
+          "minItems": 0
+        },
+        "facilityObjectExtensionG": {
+          "title": "facilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "facilityExtensionG": {
+          "title": "facilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "energyInfrastructureStationExtensionG": {
+          "title": "energyInfrastructureStationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG"
+      ]
+    },
+    "EnergyInfrastructureTable": {
+      "title": "EnergyInfrastructureTable",
+      "description": "A table of sites where vehicles can be supplied with energy.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "energyInfrastructureSite": {
+          "title": "energyInfrastructureSite",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureSite"
+          },
+          "minItems": 1
+        },
+        "energyInfrastructureTableExtensionG": {
+          "title": "energyInfrastructureTableExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "energyInfrastructureSite"
+      ]
+    },
+    "EnergyInfrastructureTablePublication": {
+      "title": "EnergyInfrastructureTablePublication",
+      "description": "A publication of static information on the infrastructure for vehicle energy supply.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "lang": {
+          "title": "lang",
+          "description": "The default language used throughout the payload publication.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Language"
+        },
+        "publicationTime": {
+          "title": "publicationTime",
+          "description": "Date/time at which the payload publication was created.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "publicationCreator": {
+          "title": "publicationCreator",
+          "$ref": "DATEXII_3_Common.json#/definitions/InternationalIdentifier"
+        },
+        "energyInfrastructureTable": {
+          "title": "energyInfrastructureTable",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/EnergyInfrastructureTable"
+          },
+          "minItems": 1
+        },
+        "payloadPublicationExtensionG": {
+          "title": "payloadPublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "energyInfrastructureTablePublicationExtensionG": {
+          "title": "energyInfrastructureTablePublicationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "lang",
+        "publicationTime",
+        "publicationCreator",
+        "energyInfrastructureTable"
+      ]
+    },
+    "EnergyPricingPolicy": {
+      "title": "EnergyPricingPolicy",
+      "description": "Details how the price for the charging process is calculated.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "pricingPolicy": {
+          "title": "pricingPolicy",
+          "description": "Information on which ways of pricing are used at the refill point.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/PricingPolicyEnumG"
+          },
+          "minItems": 0
+        },
+        "minimumDeliveryFee": {
+          "title": "minimumDeliveryFee",
+          "description": "A minimum delivery fee.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/AmountOfMoney"
+        },
+        "energyPricingPolicyExtensionG": {
+          "title": "energyPricingPolicyExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PricingPolicyEnum": {
+      "title": "PricingPolicyEnum",
+      "description": "A list of possible pricing policies at refill points",
+      "type": "string",
+      "enum": [
+        "pricePerChargingTime",
+        "pricePerDeliveryUnit",
+        "contract",
+        "flatRate",
+        "extendedG"
+      ]
+    },
+    "PricingPolicyEnumG": {
+      "title": "PricingPolicyEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/PricingPolicyEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RefillPointG": {
+      "title": "RefillPointG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "egiElectricChargingPoint": {
+          "$ref": "DATEXII_3_EnergyInfrastructure.json#/definitions/ElectricChargingPoint"
+        }
+      }
+    },
+    "Volt": {
+      "title": "Volt",
+      "description": "Volt.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    },
+    "Watt": {
+      "title": "Watt",
+      "description": "Watt.",
+      "$ref": "DATEXII_3_Common.json#/definitions/Float"
+    }
+  }
+}

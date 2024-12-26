@@ -1,0 +1,36 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[packages]
+
+Flask = "*"
+pymongo = "*"
+kafka-python = "*"
+jsonschema = "*"
+Flask-session = "*"
+pandas = "*"
+ruamel-yaml = "*"
+markupsafe = "*"
+escape = "*"
+flask_login = "*"
+Werkzeug = "*"
+Jinja2 = "*"
+click = "*"
+itsdangerous = "*"
+greenlet = "*"
+SQLAlchemy = "*"
+Flask-SQLAlchemy = "*"
+psycopg2-binary = "==2.8.6"
+python-dotenv = "*"
+coverage = "*"
+pytest = "*"
+pytest-cov = "*"
+pyyaml = "*"
+pylint = "*"
+flask_unittest = "*"
+[dev-packages]
+
+[requires]
+python_version = "3.8"

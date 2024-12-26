@@ -1,0 +1,865 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "definitions": {
+    "_BasicData": {
+      "title": "_BasicData",
+      "type": "object",
+      "properties": {
+        "roadTrafficDataTrafficStatus": {
+          "$ref": "file:file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficStatus"
+        },
+        "roadTrafficDataTravelTimeData": {
+          "$ref": "file:file:DATEXII_3_RoadTrafficData.json#/definitions/TravelTimeData"
+        },
+        "roadTrafficDataTrafficFlow": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficFlow"
+        },
+        "roadTrafficDataTrafficSpeed": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficSpeed"
+        }
+      }
+    },
+    "_MeasuredOrDerivedDataTypeEnum": {
+      "title": "_MeasuredOrDerivedDataTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/MeasuredOrDerivedDataTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_MeasurementSiteIndexMeasurementSpecificCharacteristics": {
+      "title": "_MeasurementSiteIndexMeasurementSpecificCharacteristics",
+      "type": "object",
+      "properties": {
+        "measurementSpecificCharacteristics": {
+          "title": "measurementSpecificCharacteristics",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/MeasurementSpecificCharacteristics"
+        },
+        "index": {
+          "title": "index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "measurementSpecificCharacteristics",
+        "index"
+      ]
+    },
+    "_MeasurementSiteTableVersionedReference": {
+      "title": "_MeasurementSiteTableVersionedReference",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSiteTable"
+        }
+      },
+      "required": [
+        "targetClass"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/VersionedReference"
+        }
+      ]
+    },
+    "_MeasurementSiteVersionedReference": {
+      "title": "_MeasurementSiteVersionedReference",
+      "type": "object",
+      "properties": {
+        "targetClass": {
+          "type": "string",
+          "default": "MeasurementSite"
+        }
+      },
+      "required": [
+        "targetClass"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/VersionedReference"
+        }
+      ]
+    },
+    "_PhysicalQuantity": {
+      "title": "_PhysicalQuantity",
+      "type": "object",
+      "properties": {
+        "roadTrafficDataSinglePhysicalQuantity": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/SinglePhysicalQuantity"
+        }
+      }
+    },
+    "_SiteMeasurementsIndexPhysicalQuantity": {
+      "title": "_SiteMeasurementsIndexPhysicalQuantity",
+      "type": "object",
+      "properties": {
+        "physicalQuantity": {
+          "title": "physicalQuantity",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_PhysicalQuantity"
+        },
+        "index": {
+          "title": "index",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "physicalQuantity",
+        "index"
+      ]
+    },
+    "_TimeMeaningEnum": {
+      "title": "_TimeMeaningEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TimeMeaningEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_TrafficData": {
+      "title": "_TrafficData",
+      "type": "object",
+      "properties": {
+        "roadTrafficDataTrafficFlow": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficFlow"
+        },
+        "roadTrafficDataTrafficSpeed": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficSpeed"
+        }
+      }
+    },
+    "_TrafficStatusEnum": {
+      "title": "_TrafficStatusEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficStatusEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_TravelTimeTrendTypeEnum": {
+      "title": "_TravelTimeTrendTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TravelTimeTrendTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "_TravelTimeTypeEnum": {
+      "title": "_TravelTimeTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TravelTimeTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "BasicData": {
+      "title": "BasicData",
+      "description": "Data that are either measured or calculated at the same time or over the same time period.",
+      "type": "object",
+      "properties": {
+        "measurementOrCalculationTime": {
+          "title": "measurementOrCalculationTime",
+          "description": "Characteristics of the measurement or calculation time which should be considered to override any specified defaults",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/MeasurementOrCalculationTime"
+        },
+        "_basicDataExtension": {
+          "title": "_basicDataExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "DateTimeValue": {
+      "title": "DateTimeValue",
+      "description": "A measured or calculated value of an instant in time.",
+      "type": "object",
+      "properties": {
+        "dateTime": {
+          "title": "dateTime",
+          "description": "A time stamp defining an instant in time.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "_dateTimeValueExtension": {
+          "title": "_dateTimeValueExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "dateTime"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/DataValue"
+        }
+      ]
+    },
+    "DurationValue": {
+      "title": "DurationValue",
+      "description": "A measured or calculated value of a period of time.",
+      "type": "object",
+      "properties": {
+        "duration": {
+          "title": "duration",
+          "description": "A period of time expressed in seconds.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "_durationValueExtension": {
+          "title": "_durationValueExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "duration"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/DataValue"
+        }
+      ]
+    },
+    "ElaboratedDataPublication": {
+      "title": "ElaboratedDataPublication",
+      "description": "A publication containing one or more elaborated data sets.",
+      "type": "object",
+      "properties": {
+        "periodDefault": {
+          "title": "periodDefault",
+          "description": "The default value for the publication of the time elapsed between the beginning and the end of the sampling or measurement period. This item may differ from the unit attribute; e.g. an hourly flow can be estimated from a 5-minute measurement period.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "timeDefault": {
+          "title": "timeDefault",
+          "description": "The default for the publication of the time at which the values have been computed/derived.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/HeaderInformation"
+        },
+        "physicalQuantity": {
+          "title": "physicalQuantity",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_PhysicalQuantity"
+          },
+          "minItems": 1
+        },
+        "_elaboratedDataPublicationExtension": {
+          "title": "_elaboratedDataPublicationExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "headerInformation",
+        "physicalQuantity"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/PayloadPublication"
+        }
+      ]
+    },
+    "MeasuredDataPublication": {
+      "title": "MeasuredDataPublication",
+      "description": "A publication containing one or more measurement data sets, each set being measured at a single measurement site.",
+      "type": "object",
+      "properties": {
+        "measurementSiteTableReference": {
+          "title": "measurementSiteTableReference",
+          "description": "A reference to a versioned Measurement Site table.",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_MeasurementSiteTableVersionedReference"
+          },
+          "minItems": 1
+        },
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/HeaderInformation"
+        },
+        "siteMeasurements": {
+          "title": "siteMeasurements",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/SiteMeasurements"
+          },
+          "minItems": 1
+        },
+        "_measuredDataPublicationExtension": {
+          "title": "_measuredDataPublicationExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "measurementSiteTableReference",
+        "headerInformation",
+        "siteMeasurements"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/PayloadPublication"
+        }
+      ]
+    },
+    "MeasuredOrDerivedDataTypeEnum": {
+      "title": "MeasuredOrDerivedDataTypeEnum",
+      "description": "Types of measured or derived data.",
+      "type": "string",
+      "enum": [
+        "humidityInformation",
+        "individualVehicleMeasurements",
+        "pollutionInformation",
+        "precipitationInformation",
+        "pressureInformation",
+        "roadSurfaceConditionInformation",
+        "temperatureInformation",
+        "trafficConcentration",
+        "trafficFlow",
+        "trafficGap",
+        "trafficHeadway",
+        "trafficSpeed",
+        "trafficStatusInformation",
+        "travelTimeInformation",
+        "visibilityInformation",
+        "windInformation",
+        "_extended"
+      ]
+    },
+    "MeasurementOrCalculationTime": {
+      "title": "MeasurementOrCalculationTime",
+      "description": "Describes the time at which a measured or calculated value or set of values was measured or calculated. It may be a future time at which a data value is predicted to apply.",
+      "type": "object",
+      "properties": {
+        "timeMeaning": {
+          "title": "timeMeaning",
+          "description": "Meaning of associated time value",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_TimeMeaningEnum"
+        },
+        "timePrecision": {
+          "title": "timePrecision",
+          "description": "The precision to which the time of measurement or calculation is given.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_TimePrecisionEnum"
+        },
+        "timeValue": {
+          "title": "timeValue",
+          "description": "Point in time at which this specific value or set of values has been measured or calculated. It may also be a future time at which a data value is predicted.  It may be the time of the beginning, the end or the middle of a measurement period.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "_measurementOrCalculationTimeExtension": {
+          "title": "_measurementOrCalculationTimeExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "MeasurementSite": {
+      "title": "MeasurementSite",
+      "description": "An identifiable single measurement site entry/record in the measurement site table.",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "_version": {
+          "type": "string"
+        },
+        "measurementSpecificCharacteristics": {
+          "title": "measurementSpecificCharacteristics",
+          "description": "Indexed measurement-specific characteristics associated with the measurement site. The index uniquely associates the measurement characteristics with the corresponding indexed measurement values for the measurement site.",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_MeasurementSiteIndexMeasurementSpecificCharacteristics"
+          },
+          "minItems": 0
+        },
+        "measurementSiteLocation": {
+          "title": "measurementSiteLocation",
+          "$ref": "file:DATEXII_3_LocationReferencing.json#/definitions/_LocationReference"
+        },
+        "_measurementSiteExtension": {
+          "title": "_measurementSiteExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "_id",
+        "_version",
+        "measurementSiteLocation"
+      ]
+    },
+    "MeasurementSiteTable": {
+      "title": "MeasurementSiteTable",
+      "description": "A Measurement Site Table comprising a number of sets of data, each describing the location from where a stream of measured data may be derived.  Each location is known as a \"measurement site\" which can be a point, a linear road section or an area.",
+      "type": "object",
+      "properties": {
+        "_id": {
+          "type": "string"
+        },
+        "_version": {
+          "type": "string"
+        },
+        "measurementSite": {
+          "title": "measurementSite",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/MeasurementSite"
+          },
+          "minItems": 1
+        },
+        "_measurementSiteTableExtension": {
+          "title": "_measurementSiteTableExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "_id",
+        "_version",
+        "measurementSite"
+      ]
+    },
+    "MeasurementSiteTablePublication": {
+      "title": "MeasurementSiteTablePublication",
+      "description": "A publication containing one or more Measurement Site Tables.",
+      "type": "object",
+      "properties": {
+        "headerInformation": {
+          "title": "headerInformation",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/HeaderInformation"
+        },
+        "measurementSiteTable": {
+          "title": "measurementSiteTable",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/MeasurementSiteTable"
+          },
+          "minItems": 1
+        },
+        "_measurementSiteTablePublicationExtension": {
+          "title": "_measurementSiteTablePublicationExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "headerInformation",
+        "measurementSiteTable"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/PayloadPublication"
+        }
+      ]
+    },
+    "MeasurementSpecificCharacteristics": {
+      "title": "MeasurementSpecificCharacteristics",
+      "description": "Characteristics which are specific to an individual measurement type (specified in a known order) at the given measurement site.",
+      "type": "object",
+      "properties": {
+        "period": {
+          "title": "period",
+          "description": "The time elapsed between the beginning and the end of the sampling or measurement period. This item may differ from the unit attribute; e.g. an hourly flow can be estimated from a 5-minute measurement period.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "specificMeasurementValueType": {
+          "title": "specificMeasurementValueType",
+          "description": "The type of this specific measurement at the measurement site.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_MeasuredOrDerivedDataTypeEnum"
+        },
+        "specificVehicleCharacteristics": {
+          "title": "specificVehicleCharacteristics",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+        },
+        "specificLane": {
+          "title": "specificLane",
+          "description": "The lane(s) to which the specific measurement at the measurement site relate(s). This overrides any lane specified for the measurement site as a whole.",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_LocationReferencing.json#/definitions/Lane"
+          },
+          "minItems": 0
+        },
+        "_measurementSpecificCharacteristicsExtension": {
+          "title": "_measurementSpecificCharacteristicsExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "specificMeasurementValueType"
+      ]
+    },
+    "PhysicalQuantity": {
+      "title": "PhysicalQuantity",
+      "description": "A measured or calculated physical quantity, with related properties explaining its context, meaning or status",
+      "type": "object",
+      "properties": {
+        "forecast": {
+          "title": "forecast",
+          "description": "Indication of whether this quantity data is a forecast (true = forecast).",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "measurementEquipmentTypeUsed": {
+          "title": "measurementEquipmentTypeUsed",
+          "description": "The type of equipment used to gather the raw information from which the data values are determined, e.g. 'loop', 'ANPR' (automatic number plate recognition) or 'urban traffic management system' (such as SCOOT).",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "pertinentLocation": {
+          "title": "pertinentLocation",
+          "description": "The location (e.g. the stretch of road or area) to which the data value(s) is or are pertinent/relevant. This may be different from the location of the measurement equipment (i.e. the measurement site location). ",
+          "$ref": "file:DATEXII_3_LocationReferencing.json#/definitions/_LocationReference"
+        },
+        "_physicalQuantityExtension": {
+          "title": "_physicalQuantityExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "SinglePhysicalQuantity": {
+      "title": "SinglePhysicalQuantity",
+      "description": "A measured or calculated physical quantity at a single instant or period in time, with related properties explaining its context, meaning or status",
+      "type": "object",
+      "properties": {
+        "basicData": {
+          "title": "basicData",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_BasicData"
+        },
+        "_singlePhysicalQuantityExtension": {
+          "title": "_singlePhysicalQuantityExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/PhysicalQuantity"
+        }
+      ]
+    },
+    "SiteMeasurements": {
+      "title": "SiteMeasurements",
+      "description": "A  measurement data set derived from a specific measurement site.",
+      "type": "object",
+      "properties": {
+        "measurementSiteReference": {
+          "title": "measurementSiteReference",
+          "description": "A reference to a versioned measurement site record defined in a Measurement Site table.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_MeasurementSiteVersionedReference"
+        },
+        "physicalQuantity": {
+          "title": "physicalQuantity",
+          "description": "Indexed measured value associated with the measurement site. The index uniquely associates the measurement value with the corresponding indexed measurement characteristics defined for the measurement site.",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_SiteMeasurementsIndexPhysicalQuantity"
+          },
+          "minItems": 0
+        },
+        "measurementTimeDefault": {
+          "title": "measurementTimeDefault",
+          "description": "The time associated with the set of measurements.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/MeasurementOrCalculationTime"
+        },
+        "_siteMeasurementsExtension": {
+          "title": "_siteMeasurementsExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "measurementSiteReference",
+        "measurementTimeDefault"
+      ]
+    },
+    "SpeedPercentile": {
+      "title": "SpeedPercentile",
+      "description": "Details of percentage (from an observation set) of vehicles whose speeds fall below a stated value.",
+      "type": "object",
+      "properties": {
+        "vehiclePercentage": {
+          "title": "vehiclePercentage",
+          "description": "The percentage of vehicles from the observation set whose speeds fall below the stated speed (speedPercentile).",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/PercentageValue"
+        },
+        "speedPercentile": {
+          "title": "speedPercentile",
+          "description": "The speed below which the associated percentage of vehicles in the measurement set are travelling at.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/SpeedValue"
+        },
+        "_speedPercentileExtension": {
+          "title": "_speedPercentileExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "vehiclePercentage",
+        "speedPercentile"
+      ]
+    },
+    "TimeMeaningEnum": {
+      "title": "TimeMeaningEnum",
+      "description": "Explains the meaning of a specific time value with respect to a time period",
+      "type": "string",
+      "enum": [
+        "beginTime",
+        "endTime",
+        "middleTime",
+        "_extended"
+      ]
+    },
+    "TrafficData": {
+      "title": "TrafficData",
+      "description": "Measured or derived values relating to traffic or individual vehicle movements on a specific section or at a specific point on the road network.",
+      "type": "object",
+      "properties": {
+        "forVehiclesWithCharacteristicsOf": {
+          "title": "forVehiclesWithCharacteristicsOf",
+          "description": "Used to define the vehicle characteristics to which the TrafficValue is applicable primarily in Elaborated Data Publications, but may also be used in Measured Data Publications to override vehicle characteristics defined for the measurement site.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+        },
+        "_trafficDataExtension": {
+          "title": "_trafficDataExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/BasicData"
+        }
+      ]
+    },
+    "TrafficFlow": {
+      "title": "TrafficFlow",
+      "description": "Averaged measurements or calculations of traffic flow rates.",
+      "type": "object",
+      "properties": {
+        "vehicleFlow": {
+          "title": "vehicleFlow",
+          "description": "An averaged measurement of flow rate defined in terms of the number of vehicles passing the specified measurement site.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/VehicleFlowValue"
+        },
+        "_trafficFlowExtension": {
+          "title": "_trafficFlowExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficData"
+        }
+      ]
+    },
+    "TrafficSpeed": {
+      "title": "TrafficSpeed",
+      "description": "Averaged measurements or calculations of traffic speed.",
+      "type": "object",
+      "properties": {
+        "averageVehicleSpeed": {
+          "title": "averageVehicleSpeed",
+          "description": "An averaged measurement or calculation of the speed of vehicles at the specified location.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/SpeedValue"
+        },
+        "speedPercentile": {
+          "title": "speedPercentile",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/SpeedPercentile"
+          },
+          "minItems": 0
+        },
+        "normallyExpectedSpeed": {
+          "title": "normallyExpectedSpeed",
+          "description": "The average vehicle speed which is expected for the given period (e.g. date/time, holiday status etc.) and any known quasi-static conditions (e.g. long-term roadworks). This value is derived from historical analysis.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/SpeedValue"
+        },
+        "minimumSpeed": {
+          "title": "minimumSpeed",
+          "description": "The minimum speed",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/SpeedValue"
+        },
+        "maximumSpeed": {
+          "title": "maximumSpeed",
+          "description": "The maximum speed",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/SpeedValue"
+        },
+        "_trafficSpeedExtension": {
+          "title": "_trafficSpeedExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficData"
+        }
+      ]
+    },
+    "TrafficStatus": {
+      "title": "TrafficStatus",
+      "description": "The status of traffic conditions on a specific section or at a specific point on the road network.",
+      "type": "object",
+      "properties": {
+        "trafficTrendType": {
+          "title": "trafficTrendType",
+          "description": "A characterization of the trend in the traffic conditions at the specified location and direction.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_TrafficTrendTypeEnum"
+        },
+        "trafficStatus": {
+          "title": "trafficStatus",
+          "description": "Status of traffic conditions on the identified section of road in the specified direction.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/TrafficStatusValue"
+        },
+        "_trafficStatusExtension": {
+          "title": "_trafficStatusExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/BasicData"
+        }
+      ]
+    },
+    "TrafficStatusEnum": {
+      "title": "TrafficStatusEnum",
+      "description": "List of terms used to describe traffic conditions.",
+      "type": "string",
+      "enum": [
+        "_extended"
+      ]
+    },
+    "TrafficStatusValue": {
+      "title": "TrafficStatusValue",
+      "description": "A measured or calculated value of the status of traffic conditions on a section of road in a specified direction.",
+      "type": "object",
+      "properties": {
+        "trafficStatusValue": {
+          "title": "trafficStatusValue",
+          "description": "A status value of traffic conditions on the identified section of road in the specified direction.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_TrafficStatusEnum"
+        },
+        "_trafficStatusValueExtension": {
+          "title": "_trafficStatusValueExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "trafficStatusValue"
+      ],
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_Common.json#/definitions/DataValue"
+        }
+      ]
+    },
+    "TravelTimeData": {
+      "title": "TravelTimeData",
+      "description": "Derived/computed travel time information relating to a linear section of the road network; forecast = true means a forecast for a vehicle at the start of the specified location, forecast = false means calculation/measurement at the end.",
+      "type": "object",
+      "properties": {
+        "travelTimeTrendType": {
+          "title": "travelTimeTrendType",
+          "description": "The current trend in the travel time between the defined locations in the specified direction.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_TravelTimeTrendTypeEnum"
+        },
+        "travelTimeType": {
+          "title": "travelTimeType",
+          "description": "Indication of the way in which the travel time is derived.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/_TravelTimeTypeEnum"
+        },
+        "vehicleType": {
+          "title": "vehicleType",
+          "description": "Vehicle type.",
+          "type": "array",
+          "items": {
+            "$ref": "file:DATEXII_3_Common.json#/definitions/_VehicleTypeEnum"
+          },
+          "minItems": 0
+        },
+        "travelTime": {
+          "title": "travelTime",
+          "description": "Derived/computed travel time information relating to a specific group of locations.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/DurationValue"
+        },
+        "freeFlowTravelTime": {
+          "title": "freeFlowTravelTime",
+          "description": "The travel time which would be expected under ideal free flow conditions.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/DurationValue"
+        },
+        "normallyExpectedTravelTime": {
+          "title": "normallyExpectedTravelTime",
+          "description": "The travel time which is expected for the given period (e.g. date/time, holiday status etc.) and any known quasi-static conditions (e.g. long-term roadworks). This value is derived from historical analysis.",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/DurationValue"
+        },
+        "travelTimeDelay": {
+          "title": "travelTimeDelay",
+          "description": "Delay in travel time compared to free-flow conditions",
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/DurationValue"
+        },
+        "freeFlowSpeed": {
+          "title": "freeFlowSpeed",
+          "description": "The free flow speed expected under ideal conditions, corresponding to the freeFlowTravelTime.",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/SpeedValue"
+        },
+        "_travelTimeDataExtension": {
+          "title": "_travelTimeDataExtension",
+          "$ref": "file:DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "allOf": [
+        {
+          "$ref": "file:DATEXII_3_RoadTrafficData.json#/definitions/BasicData"
+        }
+      ]
+    },
+    "TravelTimeTrendTypeEnum": {
+      "title": "TravelTimeTrendTypeEnum",
+      "description": "List of terms used to describe the trend in travel times.",
+      "type": "string",
+      "enum": [
+        "_extended"
+      ]
+    },
+    "TravelTimeTypeEnum": {
+      "title": "TravelTimeTypeEnum",
+      "description": "List of ways in which travel times are derived.",
+      "type": "string",
+      "enum": [
+        "_extended"
+      ]
+    }
+  }
+}

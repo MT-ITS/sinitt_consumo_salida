@@ -1,0 +1,1059 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "BasicAllocation": {
+      "title": "BasicAllocation",
+      "description": "Specifiying allocation by using a basic set of Conditions, but without using the TrafficRegulations namespace ",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "routeProportion": {
+          "title": "routeProportion",
+          "description": "The weight of this specific route against other alternative routes (and possibly the original route) that have identical specific applied characteristics in their route allocation. Those sets of weights should always sum up to 100%.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "reroutingAdvice": {
+          "title": "reroutingAdvice",
+          "description": "Type of rerouting advice instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ReroutingAdviceTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "complianceOptionOverride": {
+          "title": "complianceOptionOverride",
+          "description": "Override the compliance option for the specific route to make it mandatory or advisory.",
+          "$ref": "DATEXII_3_Situation.json#/definitions/ComplianceOptionEnumG"
+        },
+        "routeEffectivlyClosedForAllocation": {
+          "title": "routeEffectivlyClosedForAllocation",
+          "description": "For the specification given in this particular allocation set, the route is closed.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "condition": {
+          "title": "condition",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ConditionG"
+        },
+        "routeAllocationExtensionG": {
+          "title": "routeAllocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "basicAllocationExtensionG": {
+          "title": "basicAllocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "condition"
+      ]
+    },
+    "CapacityManagementActionEnum": {
+      "title": "CapacityManagementActionEnum",
+      "description": "Types of capacity management actions.",
+      "type": "string",
+      "enum": [
+        "additionalParkingBan",
+        "alteredSignalPhasing",
+        "alternatedSignalisedTraffic",
+        "closedEntry",
+        "closedExit",
+        "closedLanes",
+        "modifiedCycleLength",
+        "modifiedGreenPeriod",
+        "oneDirectionTraffic",
+        "oneDirectionTrafficReversed",
+        "openedExtraLane",
+        "reducingLocalAccess",
+        "synchronizedTrafficSignals",
+        "other",
+        "extendedG"
+      ]
+    },
+    "CapacityManagementActionEnumG": {
+      "title": "CapacityManagementActionEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/CapacityManagementActionEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "CapacityManagementMeasure": {
+      "title": "CapacityManagementMeasure",
+      "description": "A traffic management measure, possibly with concrete actions, which leads to an intended change (increase or decrease) of capacity for the specific route.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "measure": {
+          "title": "measure",
+          "description": "The type of the capacity management measure",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/CapacityManagementMeasureEnumG"
+        },
+        "action": {
+          "title": "action",
+          "description": "Actions that belong to the capacity management measure",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/CapacityManagementActionEnumG"
+          },
+          "minItems": 0
+        },
+        "description": {
+          "title": "description",
+          "description": "A description of the capacity management measure and its actions",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "defaultGreenTimeAdjustment": {
+          "title": "defaultGreenTimeAdjustment",
+          "description": "Additional or reduced traffic signal green time as standard value for all traffic signals on the specified route. Each traffic signal can overwrite this value.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "defaultCycleLength": {
+          "title": "defaultCycleLength",
+          "description": "The default cycle time to complete one full sequence of the operation of traffic signals along a specified route.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "recommendedSpeed": {
+          "title": "recommendedSpeed",
+          "description": "Advice for the optimal vehicle speed, for example in case of a green wave.",
+          "$ref": "DATEXII_3_Common.json#/definitions/KilometresPerHour"
+        },
+        "affectedLocation": {
+          "title": "affectedLocation",
+          "description": "If the affected location for the capacity measure is not already sufficiently specified in the enclosing objects, this property can be used to define it.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+          },
+          "minItems": 0
+        },
+        "trafficSignal": {
+          "title": "trafficSignal",
+          "description": "Traffic signal as part of a group of traffic signals that the management applies to.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/TrafficSignal"
+          },
+          "minItems": 0
+        },
+        "capacityManagementMeasureExtensionG": {
+          "title": "capacityManagementMeasureExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "measure"
+      ]
+    },
+    "CapacityManagementMeasureEnum": {
+      "title": "CapacityManagementMeasureEnum",
+      "description": "Types of capacity management measures.",
+      "type": "string",
+      "enum": [
+        "accessMeasures",
+        "capacityIncrease",
+        "capacityReduction",
+        "inflowReduction",
+        "outflowIncrease",
+        "parkingMeasures",
+        "signalMeasures",
+        "other",
+        "extendedG"
+      ]
+    },
+    "CapacityManagementMeasureEnumG": {
+      "title": "CapacityManagementMeasureEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/CapacityManagementMeasureEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConditionG": {
+      "title": "ConditionG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rerConditionSet": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ConditionSet"
+        },
+        "rerVehicleCondition": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/VehicleCondition"
+        },
+        "rerValidityCondition": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ValidityCondition"
+        },
+        "rerOccupantCondition": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/OccupantCondition"
+        },
+        "rerUserCondition": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/UserCondition"
+        },
+        "rerTrafficTypeCondition": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/TrafficTypeCondition"
+        }
+      }
+    },
+    "ConditionOperator": {
+      "title": "ConditionOperator",
+      "description": "The logical operator to be used in a test of conditions.",
+      "type": "string",
+      "enum": [
+        "and",
+        "or",
+        "xor",
+        "extendedG"
+      ]
+    },
+    "ConditionOperatorG": {
+      "title": "ConditionOperatorG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ConditionOperator"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ConditionSet": {
+      "title": "ConditionSet",
+      "description": "Groups a number of conditions into a condition set.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "Specifies the operator to be applied between the conditions in the set.",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ConditionOperatorG"
+        },
+        "conditions": {
+          "title": "conditions",
+          "description": "Specifies the conditions that are present in the set",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ConditionG"
+          },
+          "minItems": 1
+        },
+        "conditionExtensionG": {
+          "title": "conditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "conditionSetExtensionG": {
+          "title": "conditionSetExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "operator",
+        "conditions"
+      ]
+    },
+    "DetailedAllocation": {
+      "title": "DetailedAllocation",
+      "description": "Allocation using the full Condition model of namespace TrafficRegulations ",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "routeProportion": {
+          "title": "routeProportion",
+          "description": "The weight of this specific route against other alternative routes (and possibly the original route) that have identical specific applied characteristics in their route allocation. Those sets of weights should always sum up to 100%.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "reroutingAdvice": {
+          "title": "reroutingAdvice",
+          "description": "Type of rerouting advice instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ReroutingAdviceTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "complianceOptionOverride": {
+          "title": "complianceOptionOverride",
+          "description": "Override the compliance option for the specific route to make it mandatory or advisory.",
+          "$ref": "DATEXII_3_Situation.json#/definitions/ComplianceOptionEnumG"
+        },
+        "routeEffectivlyClosedForAllocation": {
+          "title": "routeEffectivlyClosedForAllocation",
+          "description": "For the specification given in this particular allocation set, the route is closed.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "routeAllocationExtensionG": {
+          "title": "routeAllocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "detailedAllocationExtensionG": {
+          "title": "detailedAllocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "FacilityTypeEnum": {
+      "title": "FacilityTypeEnum",
+      "description": "A collection of different facilities a route might lead to.",
+      "type": "string",
+      "enum": [
+        "carPark",
+        "parking",
+        "publicTransport",
+        "parkAndDrive",
+        "parkAndRide",
+        "parkAndCycle",
+        "parkAndWalk",
+        "kissAndRide",
+        "liftshare",
+        "carSharing",
+        "restArea",
+        "serviceArea",
+        "eventParking",
+        "dropOff",
+        "overnightParking",
+        "pointOfInterest",
+        "other",
+        "extendedG"
+      ]
+    },
+    "FacilityTypeEnumG": {
+      "title": "FacilityTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/FacilityTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "OccupantCondition": {
+      "title": "OccupantCondition",
+      "description": "Conditions for the occupants of a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "disabledWithPermit": {
+          "title": "disabledWithPermit",
+          "description": "Occupant is disabled with permit.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "numberOfOccupants": {
+          "title": "numberOfOccupants",
+          "description": "Total number of occupants including the driver.",
+          "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger"
+        },
+        "conditionExtensionG": {
+          "title": "conditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "occupantConditionExtensionG": {
+          "title": "occupantConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "PriorityIndex": {
+      "title": "PriorityIndex",
+      "description": "A priority index for routes with 0 = no priority; up to 10 = highest priority.",
+      "$ref": "DATEXII_3_Common.json#/definitions/NonNegativeInteger",
+      "minimum": 0.0,
+      "maximum": 10.0
+    },
+    "PtSchedule": {
+      "title": "PtSchedule",
+      "description": "A rough schedule for one or more public transport lines from this stop",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "The timestamp of the latest update of this information.",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "line": {
+          "title": "line",
+          "description": "Line or multiple lines for which this schedule is valid",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/String"
+          },
+          "minItems": 0
+        },
+        "nextDepartures": {
+          "title": "nextDepartures",
+          "description": "The next departures for this line / these lines",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/Time"
+          },
+          "minItems": 0
+        },
+        "destination": {
+          "title": "destination",
+          "description": "A destination that can be reached from this stop",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "interval": {
+          "title": "interval",
+          "description": "The interval for reaching the destination from this stop",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "travelTimeToDestination": {
+          "title": "travelTimeToDestination",
+          "description": "The travel time to reach the destination from this stop",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "ptType": {
+          "title": "ptType",
+          "description": "The type of public transport",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PublicTransportTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "ptVehicleType": {
+          "title": "ptVehicleType",
+          "description": "The type of public transport vehicle.",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PublicTransportVehicleTypeG"
+        },
+        "ptVehicleName": {
+          "title": "ptVehicleName",
+          "description": "A name of the specific vehicle type, for example \"Railjet\".",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "ptOperator": {
+          "title": "ptOperator",
+          "description": "Information about the operator of this public transport.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/definitions/Validity"
+        },
+        "ptScheduleExtensionG": {
+          "title": "ptScheduleExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "lastUpdated"
+      ]
+    },
+    "PublicTransportTypeEnum": {
+      "title": "PublicTransportTypeEnum",
+      "description": "Special measures in the context of public transport.",
+      "type": "string",
+      "enum": [
+        "freePublicTransport",
+        "nonFreePublicTransport",
+        "onDemandTraffic",
+        "railReplacementService",
+        "shuttleService",
+        "extendedG"
+      ]
+    },
+    "PublicTransportTypeEnumG": {
+      "title": "PublicTransportTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PublicTransportTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "PublicTransportVehicleType": {
+      "title": "PublicTransportVehicleType",
+      "description": "Types of public transport vehicles",
+      "type": "string",
+      "enum": [
+        "bus",
+        "coach",
+        "miniBus",
+        "subway",
+        "taxi",
+        "train",
+        "tram",
+        "extendedG"
+      ]
+    },
+    "PublicTransportVehicleTypeG": {
+      "title": "PublicTransportVehicleTypeG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PublicTransportVehicleType"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ReroutingAdviceTypeEnum": {
+      "title": "ReroutingAdviceTypeEnum",
+      "description": "Advices related to rerouting.",
+      "type": "string",
+      "enum": [
+        "doNotFollowDiversionSigns",
+        "doNotUseEntry",
+        "doNotUseExit",
+        "doNotUseIntersectionOrJunction",
+        "followDiversionSigns",
+        "followLocalDiversion",
+        "followSpecialMarkers",
+        "useEntry",
+        "useExit",
+        "useIntersectionOrJunction",
+        "extendedG"
+      ]
+    },
+    "ReroutingAdviceTypeEnumG": {
+      "title": "ReroutingAdviceTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ReroutingAdviceTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ReroutingTypeEnum": {
+      "title": "ReroutingTypeEnum",
+      "description": "Types of rerouting management.",
+      "type": "string",
+      "enum": [
+        "alternative",
+        "kpiForNavigationServices",
+        "parkAndRide",
+        "parkingGuidance",
+        "strategyConform",
+        "urbanCompatible",
+        "extendedG"
+      ]
+    },
+    "ReroutingTypeEnumG": {
+      "title": "ReroutingTypeEnumG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ReroutingTypeEnum"
+        },
+        "extendedValueG": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "RouteAllocation": {
+      "title": "RouteAllocation",
+      "description": "Supports the allocation of traffic by proportion for a specific route against other alternative routes that perform the same functional purpose. This may also include the original route.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "routeProportion": {
+          "title": "routeProportion",
+          "description": "The weight of this specific route against other alternative routes (and possibly the original route) that have identical specific applied characteristics in their route allocation. Those sets of weights should always sum up to 100%.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Percentage"
+        },
+        "reroutingAdvice": {
+          "title": "reroutingAdvice",
+          "description": "Type of rerouting advice instigated by operator.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/ReroutingAdviceTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "complianceOptionOverride": {
+          "title": "complianceOptionOverride",
+          "description": "Override the compliance option for the specific route to make it mandatory or advisory.",
+          "$ref": "DATEXII_3_Situation.json#/definitions/ComplianceOptionEnumG"
+        },
+        "routeEffectivlyClosedForAllocation": {
+          "title": "routeEffectivlyClosedForAllocation",
+          "description": "For the specification given in this particular allocation set, the route is closed.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "routeAllocationExtensionG": {
+          "title": "routeAllocationExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "RouteAllocationG": {
+      "title": "RouteAllocationG",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "rerRouteAllocation": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/RouteAllocation"
+        },
+        "rerDetailedAllocation": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/DetailedAllocation"
+        },
+        "rerBasicAllocation": {
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/BasicAllocation"
+        }
+      }
+    },
+    "RouteDescription": {
+      "title": "RouteDescription",
+      "description": "Description of a route (original/alternatives), the location of which is defined by an Itinerary.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "nameOfRoute": {
+          "title": "nameOfRoute",
+          "description": "Human oriented name or identifier for the route for better usability.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "routeClosed": {
+          "title": "routeClosed",
+          "description": "Whether the route is closed for all kind of traffic",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "isPublicTransportRoute": {
+          "title": "isPublicTransportRoute",
+          "description": "Indication, if the route itself is a public transport route. A schedule may be offered.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "troReference": {
+          "title": "troReference",
+          "description": "A reference to a coresponding traffic regulation order",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Common.json#/definitions/VersionedReference"
+          },
+          "minItems": 0
+        },
+        "priorityIndex": {
+          "title": "priorityIndex",
+          "description": "A priority index for this route. 0 = no priority; up to 10 = highest priority.",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PriorityIndex"
+        },
+        "capacityAvailable": {
+          "title": "capacityAvailable",
+          "description": "Indicates that capacities are still available on this route (or not).",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "signedRerouting": {
+          "title": "signedRerouting",
+          "description": "Indication of whether the rerouting is signed with road traffic signs.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "entry": {
+          "title": "entry",
+          "description": "The specified entry on to a road, not forming part of the original route, at which the alternative route commences.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "exit": {
+          "title": "exit",
+          "description": "The specified exit from the normal route/road at which this specific alternative route commences.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "roadOrJunctionNumber": {
+          "title": "roadOrJunctionNumber",
+          "description": "The intersecting road or the junction at which this specific alternative route commences.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "trafficConstriction": {
+          "title": "trafficConstriction",
+          "description": "Traffic constriction for this route.",
+          "$ref": "DATEXII_3_Situation.json#/definitions/TrafficConstrictionTypeEnumG"
+        },
+        "routeLength": {
+          "title": "routeLength",
+          "description": "The length of the route.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MetresAsNonNegativeInteger"
+        },
+        "itinerary": {
+          "title": "itinerary",
+          "description": "Group of one or more physically separate locations arranged as an ordered set that defines a route (SOURCE: EN16157-2)",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/ItineraryG"
+        },
+        "routeAllocation": {
+          "title": "routeAllocation",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/RouteAllocationG"
+          },
+          "minItems": 0
+        },
+        "specificDestinationFacility": {
+          "title": "specificDestinationFacility",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/SpecificDestinationFacility"
+        },
+        "ptRouteSchedule": {
+          "title": "ptRouteSchedule",
+          "description": "Public transport route schedule for the associated RouteDescription",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PtSchedule"
+          },
+          "minItems": 0
+        },
+        "capacityManagementMeasure": {
+          "title": "capacityManagementMeasure",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/CapacityManagementMeasure"
+          },
+          "minItems": 0
+        },
+        "supplementaryPositionalDescription": {
+          "title": "supplementaryPositionalDescription",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/SupplementaryPositionalDescription"
+        },
+        "abnormalTraffic": {
+          "title": "abnormalTraffic",
+          "$ref": "DATEXII_3_Situation.json#/definitions/AbnormalTraffic"
+        },
+        "routeDelays": {
+          "title": "routeDelays",
+          "description": "Details of the delays on this specific route. It is recommended to only use one of the optional attributes to avoid confusion.",
+          "$ref": "DATEXII_3_Situation.json#/definitions/Delays"
+        },
+        "trafficStatus": {
+          "title": "trafficStatus",
+          "$ref": "DATEXII_3_RoadTrafficData.json#/definitions/TrafficStatusValue"
+        },
+        "travelTimeData": {
+          "title": "travelTimeData",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_RoadTrafficData.json#/definitions/TravelTimeData"
+          },
+          "minItems": 0
+        },
+        "routeDescriptionExtensionG": {
+          "title": "routeDescriptionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "SpecificDestinationFacility": {
+      "title": "SpecificDestinationFacility",
+      "description": "A specifric facility as a destination for the routing/rerouting.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "idG": {
+          "type": "string"
+        },
+        "versionG": {
+          "type": "string"
+        },
+        "name": {
+          "title": "name",
+          "description": "The name of this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "externalIdentifier": {
+          "title": "externalIdentifier",
+          "description": "An external identifier for this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "lastUpdated": {
+          "title": "lastUpdated",
+          "description": "Information on the time when the information has been updated the last time",
+          "$ref": "DATEXII_3_Common.json#/definitions/DateTime"
+        },
+        "type": {
+          "title": "type",
+          "description": "The type of this specific destination facility.",
+          "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/FacilityTypeEnumG"
+        },
+        "otherSpecificDestinationFacility": {
+          "title": "otherSpecificDestinationFacility",
+          "description": "A specific destination facility for this route using a free text.",
+          "$ref": "DATEXII_3_Common.json#/definitions/MultilingualString"
+        },
+        "freeParking": {
+          "title": "freeParking",
+          "description": "Indication whether parking is for free or not at this facility.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "operatingHours": {
+          "title": "operatingHours",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OperatingHoursG"
+        },
+        "locationReference": {
+          "title": "locationReference",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/LocationReferenceG"
+        },
+        "owner": {
+          "title": "owner",
+          "description": "The owner of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "operator": {
+          "title": "operator",
+          "description": "The operator of this facility.",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/OrganisationG"
+        },
+        "rates": {
+          "title": "rates",
+          "$ref": "DATEXII_3_Facilities.json#/definitions/RatesG"
+        },
+        "supplementalFacility": {
+          "title": "supplementalFacility",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/SupplementalFacilityG"
+          },
+          "minItems": 0
+        },
+        "ptSchedule": {
+          "title": "ptSchedule",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_ReroutingManagementEnhanced.json#/definitions/PtSchedule"
+          },
+          "minItems": 0
+        },
+        "facilityObjectExtensionG": {
+          "title": "facilityObjectExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "facilityExtensionG": {
+          "title": "facilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "specificDestinationFacilityExtensionG": {
+          "title": "specificDestinationFacilityExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "idG",
+        "versionG",
+        "type"
+      ]
+    },
+    "TrafficSignal": {
+      "title": "TrafficSignal",
+      "description": "Road equipment for controlling traffic with a set of automatically operated lights of different colours.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "index": {
+          "title": "index",
+          "description": "An index to assign a fixed order for multiple elements of this type.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Integer"
+        },
+        "externalId": {
+          "title": "externalId",
+          "description": "An external identifier to identify the traffic signal.",
+          "$ref": "DATEXII_3_Common.json#/definitions/String"
+        },
+        "greenTimeAdjustmentOverride": {
+          "title": "greenTimeAdjustmentOverride",
+          "description": "Additional or reduced green time for this traffic signal. Overwrites the default value.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "cycleLengthOverride": {
+          "title": "cycleLengthOverride",
+          "description": "The cycle time for this traffic signal. Overwrites the default value.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Seconds"
+        },
+        "signalGroup": {
+          "title": "signalGroup",
+          "description": "Corresponding signal group object described in more detail externally,",
+          "$ref": "DATEXII_3_Common.json#/definitions/Reference"
+        },
+        "notionalMidPoint": {
+          "title": "notionalMidPoint",
+          "description": "Abstracted location representing a singular reference location for all traffic signals at a single intersection (usually its midpoint or helpwise the horizontal midpoint of the corresponding stop line).",
+          "$ref": "DATEXII_3_LocationReferencing.json#/definitions/PointLocationG"
+        },
+        "trafficSignalExtensionG": {
+          "title": "trafficSignalExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "index"
+      ]
+    },
+    "TrafficTypeCondition": {
+      "title": "TrafficTypeCondition",
+      "description": "Conditions for traffic types",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "trafficType": {
+          "title": "trafficType",
+          "description": "Exclduing certain types of traffic.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Situation.json#/definitions/TrafficTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "conditionExtensionG": {
+          "title": "conditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "trafficTypeConditionExtensionG": {
+          "title": "trafficTypeConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "UserCondition": {
+      "title": "UserCondition",
+      "description": "Conditions depending on specific users",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "users": {
+          "title": "users",
+          "description": "A restriction for certain users.",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_Facilities.json#/definitions/UserTypeEnumG"
+          },
+          "minItems": 0
+        },
+        "conditionExtensionG": {
+          "title": "conditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "userConditionExtensionG": {
+          "title": "userConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      }
+    },
+    "ValidityCondition": {
+      "title": "ValidityCondition",
+      "description": "Conditions for time validity of a traffic regulation.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "validity": {
+          "title": "validity",
+          "$ref": "DATEXII_3_Common.json#/definitions/Validity"
+        },
+        "conditionExtensionG": {
+          "title": "conditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "validityConditionExtensionG": {
+          "title": "validityConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "validity"
+      ]
+    },
+    "VehicleCondition": {
+      "title": "VehicleCondition",
+      "description": "Conditions for a vehicle.",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "negate": {
+          "title": "negate",
+          "description": "If set to true means that the entire condition shall be negated.",
+          "$ref": "DATEXII_3_Common.json#/definitions/Boolean"
+        },
+        "vehicleCharacteristics": {
+          "title": "vehicleCharacteristics",
+          "$ref": "DATEXII_3_Common.json#/definitions/VehicleCharacteristics"
+        },
+        "conditionExtensionG": {
+          "title": "conditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        },
+        "vehicleConditionExtensionG": {
+          "title": "vehicleConditionExtensionG",
+          "$ref": "DATEXII_3_Common.json#/definitions/ExtensionTypeG"
+        }
+      },
+      "required": [
+        "vehicleCharacteristics"
+      ]
+    }
+  }
+}

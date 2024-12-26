@@ -1,0 +1,49 @@
+{
+    "exchangeInformation": {
+        "ExchangeContext": {
+            "codedExchangeProtocol": "statefulPush",
+            "exchangeSpecificationVersion": "Exchange2020",
+            "supplierOrCisRequester": {
+                "internationalIdentifier": {
+                    "country": "CO",
+                    "nationalIdentifier": "SINNIT"
+                }
+            },
+         "Subscription":{
+            "validity": {
+                "validityStatus": {
+                  "value": "active"
+                },
+                "validityTimeSpecification": {
+                  "overallStartTime": "2021-12-09T17:03:30.387+01:00"
+                }
+              },
+            "name":"subscription_name",
+            "referenceID":{
+              "_id":"referenceId",
+              "version":"1"
+            },
+            "subscriptionStart":"2021-12-09T17:03:30.387+01:00",
+            "subscriptionEnd":"2021-12-09T17:03:30.387+01:00",
+            "deliveyFrequency":5
+         }
+        },
+        "DynamicInformation": {
+            "exchangeStatus": "online",
+            "messageGenerationTimestamp": "2022-Apr-26T22:57:27.717248",
+            "returnInformation": {
+                "returnStatus": "ack",
+                "returnStatusReason": [
+                    {
+                        "lang": "es",
+                        "value": "Dato es válido y ha sido registrado"
+                    }
+                ]
+            },
+            "sessionInformation": {
+                "sessionID": "43808973-f2fb-4777-9130-36c2fbb20a58",
+                "startSession": "2022-Apr-26T22:57:27.717315"
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "definitions": {
+    "_ManagementTypeEnum": {
+      "title": "_ManagementTypeEnum",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "value": {
+          "$ref": "DATEXII_3_InformationManagement.json#/definitions/ManagementTypeEnum"
+        },
+        "_extendedValue": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "value"
+      ]
+    },
+    "ElementReference": {
+      "title": "ElementReference",
+      "description": "Element Reference",
+      "type": "object",
+      "properties": {
+        "managementStatus": {
+          "title": "managementStatus",
+          "description": "It identifies the status of the element referenced",
+          "$ref": "DATEXII_3_InformationManagement.json#/definitions/_ManagementTypeEnum"
+        },
+        "reference": {
+          "title": "reference",
+          "description": "It identifies an alement reference",
+          "$ref": "DATEXII_3_Common.json#/definitions/Reference"
+        },
+        "versionedReference": {
+          "title": "versionedReference",
+          "description": "It identifies an element versioned reference",
+          "$ref": "DATEXII_3_Common.json#/definitions/VersionedReference"
+        },
+        "_elementReferenceExtension": {
+          "title": "_elementReferenceExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "managementStatus"
+      ]
+    },
+    "InformationManagedResourceList": {
+      "title": "InformationManagedResourceList",
+      "description": "Managed Resource List",
+      "type": "object",
+      "properties": {
+        "elementReference": {
+          "title": "elementReference",
+          "type": "array",
+          "items": {
+            "$ref": "DATEXII_3_InformationManagement.json#/definitions/ElementReference"
+          },
+          "minItems": 1
+        },
+        "_informationManagedResourceListExtension": {
+          "title": "_informationManagedResourceListExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      },
+      "required": [
+        "elementReference"
+      ]
+    },
+    "InformationManagement": {
+      "title": "InformationManagement",
+      "description": "Information Managment",
+      "type": "object",
+      "properties": {
+        "informationManagedResourceList": {
+          "title": "informationManagedResourceList",
+          "$ref": "DATEXII_3_InformationManagement.json#/definitions/InformationManagedResourceList"
+        },
+        "_informationManagementExtension": {
+          "title": "_informationManagementExtension",
+          "$ref": "DATEXII_3_Common.json#/definitions/_ExtensionType"
+        }
+      }
+    },
+    "ManagementTypeEnum": {
+      "title": "ManagementTypeEnum",
+      "description": "Enumeration of status information",
+      "type": "string",
+      "enum": [
+        "cancelled",
+        "closed",
+        "_extended"
+      ]
+    }
+  }
+}
