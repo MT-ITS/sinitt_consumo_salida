@@ -1,6 +1,14 @@
-Este codigo sirve para recibir la información publicada desde el SINITT. Para esto el Ministerio de Transporte creo un componente servidor que 
-las entidades o actores que van a utilizar le SINITT pueden utilizar y cuyo codigo esta bajo la carpeta: servidor_recepcion_datos. Para instalar este componente descargue 
-el carpeta e instale las librerias mediante el comando:
+Este codigo sirve para recibir la información publicada desde el SINITT. Para esto el Ministerio de Transporte de Colombia creo un componente que opera en modo servidor, mediante el cual las entidades o actores que van a utilizar le SINITT pueden recibir mensajes en DATEX_II mediante el protocolo publish/subcribe.
+
+La siguiente gráfica muestra las interrelaciones definidas para el uso del componente:
+
+
+Instalación
+La entidad que desee utilizar este componente para comunicación con el SINITT deberá:
+
+1. Descargar el código  
+2. ubicarse en la la carpeta
+3. el carpeta e instale las librerias mediante el comando:
 
 pip install -r requirements 
 
