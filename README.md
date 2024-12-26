@@ -1,4 +1,4 @@
-<em> # Componente de Consumo de Datos desde el SINITT.  </em>
+<h1 align="center"> Componente de Consumo de Datos desde el SINITT.  </h1>
 
 Este codigo sirve para recibir la información publicada desde el SINITT. Para esto el Ministerio de Transporte de Colombia creo un componente que opera en modo servidor, mediante el cual las entidades o actores que van a utilizar le SINITT pueden recibir mensajes en DATEX_II mediante el protocolo publish/subcribe.
 
