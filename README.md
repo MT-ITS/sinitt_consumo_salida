@@ -7,14 +7,15 @@ Instalación
 La entidad que desee utilizar este componente para comunicación con el SINITT deberá:
 
 1. Descargar el código  
-2. ubicarse en la la carpeta
-3. el carpeta e instale las librerias mediante el comando:
+2. ubicarse en la la carpeta servidor_recepcion_datos
+3. Instalar las librerias mediante el comando:
 
 pip install -r requirements 
 
-Para ejecutar este código también se entrega un docker que puede ser utilizado. 
+Para ejecutar este código también se entrega un docker que puede ser utilizado y cuyo Dockerfile se encuentra en la carpeta: servidor_recepcion_datos. 
 
-En ambos casos el actor debe complementar el código para guardar o tratar los mensajes que llegan. En el archivo main.py se dejan indicados los puntos donde debe realizar los cambios por programación para hacer estos tratamientos.   
+Utilización
+Sin important si la entidad utiliza el código de forma directa o mediante Docker, la persona utilizando el código debe complementarlo para guardar o tratar los mensajes que llegan. En el archivo main.py (dentro de la carpeta /src) se dejan indicados los puntos donde debe realizar los cambios por programación para hacer estos tratamientos.   
 
 Igualmente se entrega dos scripts en python:
 - (subscribe.py), uno para subscribirse a un contenido que publica el SINITT.
