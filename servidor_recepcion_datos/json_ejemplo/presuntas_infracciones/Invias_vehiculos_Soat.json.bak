@@ -1,0 +1,106 @@
+{
+    "payload": [
+        {
+            "modelBaseVersionG": "3",
+            "versionG": "3.5",
+            "roaMeasuredDataPublication": {
+                "lang": "en",
+                "publicationTime": "2022-04-04T09:06:50",
+                "measurementSiteTableReference": [
+	                {
+	                    "idG": "1",
+					    "versionG" : "0",
+	                    "targetClass": "MeasurementSiteTable"
+	                }
+                ],
+                "publicationCreator": {
+	                "country": "co",
+	                "nationalIdentifier": "INVIA"
+                },
+                "headerInformation": {
+                	"informationStatus": {
+                	    "value": "real"
+                	}
+                },
+                "siteMeasurements": [
+					{
+						"measurementSiteReference": {
+							"idG": "69-197661",
+							"versionG": "0",
+							"targetClass": "measurementSite"
+						},
+						"measurementTimeDefault": {
+							"timeValue": "2022-04-04T09:05:00.000Z"
+						},
+						"physicalQuantity": [
+							{
+								"index": 0,
+								"physicalQuantity": {
+									"roaSinglePhysicalQuantity": {
+										"forecast": ,
+										"pertinentLocation" :,
+										"basicData": {
+											"roaIndividualVehicleDataValues": {
+												 "measurementOrCalculationTime" :
+												 "individualVehicle": {
+													"vehicleRegistrationPlateIdentifier": "ABC123",
+													"vehicleCharacteristics": {
+														"vehicleyType" : [
+															 {
+																"value": "largeCar"
+															 }
+														]
+													}
+												},
+												"individualVehicleDataValuesExtensionG": {
+													"urlEvidenceCar": "string url",
+													"urlEvidenceVehicleRegistrationPlateIdentifier": "string url"
+													"extensionSoat": {
+														"insurancePolicyExpirationDateTime":
+														"insurancePolicyStatus":
+													}
+												}
+											}
+										}
+									}
+								}
+							},
+							{
+								"index": 0,
+								"physicalQuantity": {
+									"roaSinglePhysicalQuantity": {
+										"forecast": ,
+										"pertinentLocation" :,
+										"basicData": {
+											"roaIndividualVehicleDataValues": {
+												 "measurementOrCalculationTime" :
+												 "individualVehicle": {
+													"vehicleRegistrationPlateIdentifier": "ABD123"
+													"vehicleCharacteristics": {
+										            	"vehicleyType" : [
+									 						{
+																"value": "largeCar"
+									 						}
+								 						]
+													}
+							 					},
+							 					"individualVehicleDataValuesExtensionG": {
+													"urlEvidenceCar": "string url",
+													"urlEvidenceVehicleRegistrationPlateIdentifier": "string url"
+												    "extensionSoat": {
+														"insurancePolicyExpirationDateTime":
+														"insurancePolicyStatus":
+												    }
+							 					}
+											}
+					   					}
+									}
+								}
+							}
+						]
+					}
+				]
+            }
+        }
+    ]
+}

@@ -1,0 +1,91 @@
+{
+    "payload": [
+        {
+            "modelBaseVersionG": "3",
+            "versionG": "3.5",
+            "roaElaboratedDataPublication": {
+                "lang": "en",
+                "publicationTime": "2022-04-04T09:06:50",
+                "forecastDefault": false,
+                "periodDefault": 300,
+                "timeDefault": "2022-04-04T09:06:50",
+                "publicationCreator": {
+	                "country": "co",
+	                "nationalIdentifier": "TESTMT"
+                },
+                "headerInformation": {
+                	"informationStatus": {
+                	    "value": "real"
+                	}
+                },
+				"physicalQuantity": [
+					{
+							"roaSinglePhysicalQuantity": {
+								"forecast": false,
+								"pertinentLocation": {
+									"locPointLocation": {
+										"supplementaryPositionalDescription":{
+											"geographicDescriptor": {
+													"value": "onBorder"
+											},
+											"carriageway": [
+												{
+													"carriageway":{
+														"value": "serviceRoad"
+													},
+													"lane": [
+														{
+															"laneNumber": 1
+														}
+													]
+												}
+											]
+										}
+									},
+									"locLocationGroupByReference": {
+										"predefinedLocationGroupReference": {
+											"targetClass": "measurementSiteTable",
+											"idG": "1",
+											"versionG": "0"
+										}
+									},
+									"locLocationByReference": {
+										"predefinedLocationReference":{
+											"targetClass": "measurementSite",
+											"idG": "69-197661",
+											"versionG": "0"
+										}
+									}
+								},
+								"basicData": {
+									"roaTrafficSpeed": {
+										 "measurementOrCalculationTime": {
+											 "timeMeaning": {
+												 "value": "middleTime"
+											 },
+											 "timeValue": "2024-10-002T09:05:00.000Z"
+										 },
+										 "averageVehicleSpeed": {
+										 	"speed": 50,
+										 	"accuracy": 80,
+										 	"computationalMethod": {
+										 		"value": "arithmeticAverageOfSamplesBasedOnAFixedNumberOfSamples"
+										 	},
+										 	"supplierCalculatedDataQuality": 80
+										},
+										"forVehiclesWithCharacteristicsOf":{
+											"vehicleType" : [
+												{
+													"value": "largeCar"
+												}
+											]
+										}
+									}
+								}
+							}
+					}
+				]
+			}
+		}
+    ]
+}

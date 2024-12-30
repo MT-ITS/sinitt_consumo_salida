@@ -1,0 +1,74 @@
+{
+    "payload": [
+        {
+            "modelBaseVersionG": "3",
+            "versionG" : "3.5",
+            "sitSituationPublication": {
+                "lang": "en",
+                "publicationTime": "2024-06-24T00:00:00-05:00",
+                "publicationCreator": {
+                    "country": "CO",
+                    "nationalIdentifier": "TESTMT"
+                },
+                "payloadPublicationExtensionG" : {
+                    "datasendServer" : "2022-01-20T08:50:18-05:00"
+                },
+                "situation": [
+                    {
+                        "idG": "2848026",
+                        "headerInformation": {
+                            "informationStatus": {
+                                "value" : "real"
+                            }
+                        },
+                        "situationRecord" : [
+                            {
+                                "sitAuthorityOperation" : {
+                                    "idG": "131-19",
+                                    "versionG": "1",
+                                    "situationRecordCreationTime": "2022-01-19T14:32:00-05:00",
+                                    "situationRecordVersionTime": "2022-01-19T14:32:00-05:00",
+                                    "probabilityOfOccurrence": {
+                                        "value": "riskOf"
+                                    },
+                                    "authorityOperationType": {
+                                        "value" : "policeCheckPoint"
+                                   	},
+                                    "validity": {
+                                        "validityStatus": {
+                                            "value": "active"
+                                        },
+                                        "validityTimeSpecification": {
+                                            "overallStartTime": "2021-10-31T04:10:22-05:00"
+                                        }
+                                    },
+                                    "impact": {
+                                        "delays": {
+                                            "delayBand": {
+                                                "value": "negligible"
+                                            },
+                                            "delaysType": {
+                                                "value": "delaysOfUncertainDuration"
+                                            },
+                                            "delayTimeValue": 233
+                                        }
+                                    },
+                                    "locationReference": {
+                                        "locPointLocation": {
+                                            "pointByCoordinates": {
+                                                "pointCoordinates": {
+                                                    "latitude": 4.718698501586914,
+                                                    "longitude": -74.05033111572266
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}
